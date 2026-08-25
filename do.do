@@ -83,6 +83,21 @@ keep single ypen3 gender cjs age educ sphus country income gali id Qyear sphus
 
 drop if ypen3>7000
 
+*additional age categorization to match Eurostat categories
+generate ageD=0
+replace ageD=1 if age>=55 & age<=64
+replace ageD=2 if age>=65 & age<=74
+replace ageD=3 if age>=75 & age<=84
+replace ageD=4 if age>=85
+label define ageDl 0 "Less than 55 years old" 1 "Between 55 and 64 years old" 2 "Between 65 and 74 years old" 3 "Between 75 and 84 years old" 4 "Older than 85 years"
+label values ageD ageDl
+
+generate ageE=0
+replace ageE=1 if age>=55 & age<=64
+replace ageE=2 if age>=65
+label define agel 0 "Less than 55 years old" 1 "Between 55 and 64 years old" 2 "Older than 64 years"
+label values ageE agel
+
 *>>>DESCRIPTIVES
 
 tabulate country
@@ -100,6 +115,13 @@ graph export sampleDis.png, replace height(2400)
 
 asdoc spearman single ypen3 gender cjs age educ sphus country income gali id Qyear sphus, save(report.doc) append
 
+asdoc tabstat income if country==35 & gender==1, by(ageD) stat(mean), save(report.doc) append
+asdoc tabstat income if country==48 & gender==1, by(ageD) stat(mean), save(report.doc) append
+asdoc tabstat income if country==57 & gender==1, by(ageD) stat(mean), save(report.doc) append
+asdoc tabstat income if country==35 & gender==2, by(ageD) stat(mean), save(report.doc) append
+asdoc tabstat income if country==48 & gender==2, by(ageD) stat(mean), save(report.doc) append
+asdoc tabstat income if country==57 & gender==2, by(ageD) stat(mean), save(report.doc) append
+
 *>>>ANALYSIS
 
 xtset id Qyear
@@ -109,41 +131,19 @@ xtset id Qyear
 
 *general model
 
-xttobit ypen3 i.gender age i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
-
-xttobit ypen3 i.gender age i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==35, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreEE) replace
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) noaster replace
 
 *for disability
 
-generate ageD=0
-replace ageD=1 if age>=55 & age<=64
-replace ageD=2 if age>=65 & age<=74
-replace ageD=3 if age>=75 & age<=84
-replace ageD=4 if age>=85
-label define ageDl 0 "Less than 55 years old" 1 "Between 55 and 64 years old" 2 "Between 65 and 74 years old" 3 "Between 75 and 84 years old" 4 "Older than 85 years"
-label values ageD ageDl
-
-xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==35, ll(0) iterate(25) baselevels
+xttobit ypen3 i.gender i.ageD i.gali income if country==35, ll(0) iterate(25) baselevels
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityEE) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) noaster append
 
-*for education
-
-generate ageE=0
-replace ageE=1 if age>=55 & age<=64
-replace ageE=2 if age>=65
-label define agel 0 "Less than 55 years old" 1 "Between 55 and 64 years old" 2 "Older than 64 years"
-label values ageE agel
-
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationEE) noaster append
-
 *for income
 
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender i.ageE i.gali income if country==35, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeEE) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) noaster append
 
@@ -152,25 +152,19 @@ outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) noaster append
 
 *general model
 
-xttobit ypen3 i.gender age i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreLT) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) noaster append
 
 *for disability
 
-xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender i.ageD i.gali income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLT) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) noaster append
 
-*for education
-
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLT) noaster append
-
 *for income
 
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender i.ageE i.gali income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLT) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) noaster append
 
@@ -179,25 +173,19 @@ outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) noaster append
 
 *general model
 
-xttobit ypen3 i.gender age i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(Core) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) noaster append
 
 *for disability
 
-xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender i.ageD i.gali income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLV) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) noaster append
 
-*for education
-
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLV) noaster append
-
 *for income
 
-xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
+xttobit ypen3 i.gender i.ageE i.gali income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLV) append
 outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) noaster append
 
