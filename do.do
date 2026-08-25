@@ -110,7 +110,7 @@ xttobit ypen3 i.gender age i.gali i.educ income if country==35, ll(0) iterate(25
 
 xttobit ypen3 i.gender age i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreEE) replace
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) replace
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) noaster replace
 
 *for disability
 
@@ -124,7 +124,7 @@ label values ageD ageDl
 
 xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==35, ll(0) iterate(25) baselevels
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) noaster append
 
 *for education
 
@@ -136,13 +136,13 @@ label values ageE agel
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationEE) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationEE) noaster append
 
 *for income
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==35, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) noaster append
 
 *-------
 *LITHUANIA
@@ -151,25 +151,25 @@ outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) append
 
 xttobit ypen3 i.gender age i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) noaster append
 
 *for disability
 
 xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) noaster append
 
 *for education
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLT) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLT) noaster append
 
 *for income
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==48, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) noaster append
 
 *-------
 *LATVIA
@@ -178,25 +178,25 @@ outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) append
 
 xttobit ypen3 i.gender age i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(Core) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) noaster append
 
 *for disability
 
 xttobit ypen3 i.gender i.ageD i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) noaster append
 
 *for education
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLV) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLV) noaster append
 
 *for income
 
 xttobit ypen3 i.gender i.ageE i.gali i.educ income if country==57, ll(0) iterate(25) baselevels tobit
 outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) append
+outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) noaster append
 
 log close SimulationBaltic
 translate output.smcl output.pdf

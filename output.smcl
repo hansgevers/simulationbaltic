@@ -3,7 +3,7 @@
       name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Aug 2026, 10:09:50
+ {txt}opened on:  {res}25 Aug 2026, 10:49:58
 {txt}
 {com}. 
 . asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2050 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
@@ -743,7 +743,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) replace
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) noaster replace
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -862,7 +862,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -974,7 +974,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationEE) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationEE) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1073,7 +1073,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1173,7 +1173,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1275,7 +1275,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1375,7 +1375,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLT) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLT) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1475,7 +1475,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1572,7 +1572,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1680,7 +1680,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1778,7 +1778,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLV) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(EducationLV) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1876,7 +1876,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 {txt}{browse `"results.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "results.txt""':seeout}
 
-{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) append
+{com}. outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) noaster append
 {txt}{browse `"resultsNoStar.xls"'}
 {browse `"C:\users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7"' :dir}{com} : {txt}{stata `"seeout using "resultsNoStar.txt""':seeout}
 
@@ -1885,7 +1885,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
       {txt}name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Aug 2026, 10:11:02
+ {txt}closed on:  {res}25 Aug 2026, 10:51:40
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
