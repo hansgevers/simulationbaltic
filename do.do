@@ -1,5 +1,5 @@
 /*
-Stata code supporting paper "Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2050 with data from SHARE and Eurostat"
+Stata code supporting paper "Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2036 with data from SHARE and Eurostat"
 Author: Hans Gevers - Junior Research Fellow at the Estonian Business School
 https://orcid.org/0009-0001-0249-4142 hans.gevers@ebs.ee
 */
@@ -7,7 +7,7 @@ https://orcid.org/0009-0001-0249-4142 hans.gevers@ebs.ee
 clear all
 log using output.smcl, replace name("SimulationBaltic")
 
-asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2050 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
+asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2036 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
 asdoc, text(\par \qc Hans Gevers - Junior Research Fellow at the Estonian Business School https://orcid.org/0009-0001-0249-4142 hans.gevers@ebs.ee) fs(10)  save(report.doc) append
 
 *>>>PREPROCESSING
@@ -81,15 +81,18 @@ label values educ educL
 
 keep single ypen3 gender cjs age educ sphus country income gali id Qyear sphus
 
+drop if ypen3>7000
+
 *>>>DESCRIPTIVES
 
 tabulate country
-hist ypen3
 
 asdoc codebook single ypen3 gender cjs age educ sphus country income gali id Qyear, compact save(report.doc) append
 
 asdoc codebook, save(report.doc) append
 
+hist ypen3 if ypen3>0, scheme(s2color) xlabel(0(1000)7000,angle(0) labsize(small) grid) ylabel(0.000(0.0002)0.001,angle(0) labsize(small) grid format(%9.0gc)) 
+graph export benefits.png, replace height(2400)
 vioplot age, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
 graph export sample.png, replace height(2400)
 vioplot age if ypen3>0, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 

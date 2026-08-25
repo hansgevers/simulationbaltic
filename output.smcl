@@ -3,10 +3,10 @@
       name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Aug 2026, 10:49:58
+ {txt}opened on:  {res}25 Aug 2026, 11:19:12
 {txt}
 {com}. 
-. asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2050 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
+. asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2036 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
 {res}{txt}{p 0 4 2}
 (file {bf}
 report.doc{rm}
@@ -272,6 +272,10 @@ saved
 . keep single ypen3 gender cjs age educ sphus country income gali id Qyear sphus
 {txt}
 {com}. 
+. drop if ypen3>7000
+{txt}(7 observations deleted)
+
+{com}. 
 . *>>>DESCRIPTIVES
 . 
 . tabulate country
@@ -279,32 +283,29 @@ saved
        {txt}Country {c |}
     identifier {c |}      Freq.     Percent        Cum.
 {hline 15}{c +}{hline 35}
-       Estonia {c |}{res}      5,526       55.53       55.53
-{txt}     Lithuania {c |}{res}      2,423       24.35       79.87
-{txt}        Latvia {c |}{res}      2,003       20.13      100.00
+       Estonia {c |}{res}      5,520       55.51       55.51
+{txt}     Lithuania {c |}{res}      2,422       24.35       79.86
+{txt}        Latvia {c |}{res}      2,003       20.14      100.00
 {txt}{hline 15}{c +}{hline 35}
-         Total {c |}{res}      9,952      100.00
+         Total {c |}{res}      9,945      100.00
 {txt}
-{com}. hist ypen3
-{txt}(bin={res}39{txt}, start={res}0{txt}, width={res}333.33333{txt})
-{res}{txt}
 {com}. 
 . asdoc codebook single ypen3 gender cjs age educ sphus country income gali id Qyear, compact save(report.doc) append
 {res}
 {txt}Variable    Obs Unique      Mean        Min     Max  Label
 {txt}{hline 200}
-{txt}single   {res}  9952      2  .4113746          0       1  {txt}Single
-{txt}ypen3    {res}  9952    383  238.8071          0   13000  {txt}Disability pensions/benefits
-{txt}gender   {res}  9952      2  1.631732          1       2  {txt}Gender
-{txt}cjs      {res}  9952      6   1.94996          1      97  {txt}Current job situation
-{txt}age      {res}  9952     64  69.68238         34     100  {txt}Age
-{txt}educ     {res}  9952      3  1.117363          0       2  {txt}
-{txt}sphus    {res}  9952      5  3.740856          1       5  {txt}Self-perceived health - US scale
-{txt}country  {res}  9952      3  42.59295         35      57  {txt}Country identifier
-{txt}income   {res}  9952   4456  10092.82  -.0000737  170698  {txt}
-{txt}gali     {res}  9952      2   .588324          0       1  {txt}Limitation with activities
-{txt}id       {res}  9952   5086  2559.018          1    5101  {txt}group(mergeid)
-{txt}Qyear    {res}  9952      2   2020.98       2020    2022  {txt}
+{txt}single   {res}  9945      2  .4113625          0       1  {txt}Single
+{txt}ypen3    {res}  9945    378  232.8604          0    6816  {txt}Disability pensions/benefits
+{txt}gender   {res}  9945      2  1.631875          1       2  {txt}Gender
+{txt}cjs      {res}  9945      6  1.949321          1      97  {txt}Current job situation
+{txt}age      {res}  9945     64  69.68678         34     100  {txt}Age
+{txt}educ     {res}  9945      3  1.117748          0       2  {txt}
+{txt}sphus    {res}  9945      5  3.740875          1       5  {txt}Self-perceived health - US scale
+{txt}country  {res}  9945      3  42.59698         35      57  {txt}Country identifier
+{txt}income   {res}  9945   4450  10096.15  -.0000737  170698  {txt}
+{txt}gali     {res}  9945      2  .5882353          0       1  {txt}Limitation with activities
+{txt}id       {res}  9945   5086  2559.401          1    5101  {txt}group(mergeid)
+{txt}Qyear    {res}  9945      2  2020.979       2020    2022  {txt}
 {txt}{hline 200}
 {res}Click to Open File:  {browse "report.doc"}
 {txt}
@@ -319,11 +320,11 @@ saved
 {ralign 22:Label}: {res:country}
 
 {col 18}Range: [{res}35{txt},{res}57{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}3{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}3{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     5,526{col 32}      35{col 42}{txt}Estonia
-{col 20}{res}     2,423{col 32}      48{col 42}{txt}Lithuania
+{col 20}{res}     5,520{col 32}      35{col 42}{txt}Estonia
+{col 20}{res}     2,422{col 32}      48{col 42}{txt}Lithuania
 {col 20}{res}     2,003{col 32}      57{col 42}{txt}Latvia
 
 {txt}{hline}
@@ -334,11 +335,11 @@ saved
 {ralign 22:Label}: {res:noyes}
 
 {col 18}Range: [{res}0{txt},{res}1{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     5,858{col 32}       0{col 42}{txt}No
-{col 20}{res}     4,094{col 32}       1{col 42}{txt}Yes
+{col 20}{res}     5,854{col 32}       0{col 42}{txt}No
+{col 20}{res}     4,091{col 32}       1{col 42}{txt}Yes
 
 {txt}{hline}
 {res}ypen3{right:Disability pensions/benefits}
@@ -346,11 +347,11 @@ saved
 
 {col 19}Type: Numeric ({res}double{txt})
 
-{col 18}Range: [{res}0{txt},{res}13000{txt}]{col 55}Units: {res}1.000e-07
-{col 10}{txt}Unique values: {res}383{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 18}Range: [{res}0{txt},{res}6816{txt}]{col 55}Units: {res}1.000e-07
+{col 10}{txt}Unique values: {res}378{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
-{txt}{col 19}Mean: {res}{ralign 7:238.807}
-{txt}{col 14}Std. dev.: {res}{ralign 7:914.444}
+{txt}{col 19}Mean: {res}{ralign 7:232.86}
+{txt}{col 14}Std. dev.: {res}{ralign 7:884.674}
 
 {txt}{col 12}Percentiles: {col 25}{ralign 7:10%}{ralign 10:25%}{ralign 10:50%}{ralign 10:75%}{ralign 10:90%}
 {res}{col 25}{ralign 7:0}{ralign 10:       0}{ralign 10:       0}{ralign 10:       0}{ralign 10:     276}
@@ -363,11 +364,11 @@ saved
 {ralign 22:Label}: {res:gender}
 
 {col 18}Range: [{res}1{txt},{res}2{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     3,665{col 32}       1{col 42}{txt}Male
-{col 20}{res}     6,287{col 32}       2{col 42}{txt}Female
+{col 20}{res}     3,661{col 32}       1{col 42}{txt}Male
+{col 20}{res}     6,284{col 32}       2{col 42}{txt}Female
 
 {txt}{hline}
 {res}age{right:Age}
@@ -377,7 +378,7 @@ saved
 {ralign 22:Label}: {res:num}, but {res:64} nonmissing values are not labeled
 
 {col 18}Range: [{res}34{txt},{res}100{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}64{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}64{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{ralign 23: Examples:}{col 25}{res}60{col 31}{txt}
 {ralign 23: }{col 25}{res}66{col 31}{txt}
@@ -392,13 +393,13 @@ saved
 {ralign 22:Label}: {res:sphus}
 
 {col 18}Range: [{res}1{txt},{res}5{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}5{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}5{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
 {col 20}{res}       154{col 32}       1{col 42}{txt}Excellent
 {col 20}{res}       416{col 32}       2{col 42}{txt}Very good
-{col 20}{res}     2,844{col 32}       3{col 42}{txt}Good
-{col 20}{res}     4,979{col 32}       4{col 42}{txt}Fair
+{col 20}{res}     2,842{col 32}       3{col 42}{txt}Good
+{col 20}{res}     4,974{col 32}       4{col 42}{txt}Fair
 {col 20}{res}     1,559{col 32}       5{col 42}{txt}Poor
 
 {txt}{hline}
@@ -409,11 +410,11 @@ saved
 {ralign 22:Label}: {res:gali}
 
 {col 18}Range: [{res}0{txt},{res}1{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     4,097{col 32}       0{col 42}{txt}Not limited
-{col 20}{res}     5,855{col 32}       1{col 42}{txt}Limited
+{col 20}{res}     4,095{col 32}       0{col 42}{txt}Not limited
+{col 20}{res}     5,850{col 32}       1{col 42}{txt}Limited
 
 {txt}{hline}
 {res}cjs{right:Current job situation}
@@ -423,13 +424,13 @@ saved
 {ralign 22:Label}: {res:cjs}
 
 {col 18}Range: [{res}1{txt},{res}97{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}6{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}6{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     6,182{col 32}       1{col 42}{txt}Retired
-{col 20}{res}     2,948{col 32}       2{col 42}{txt}Employed or self-employed
+{col 20}{res}     6,180{col 32}       1{col 42}{txt}Retired
+{col 20}{res}     2,947{col 32}       2{col 42}{txt}Employed or self-employed
 {col 20}{res}       241{col 32}       3{col 42}{txt}Unemployed
-{col 20}{res}       440{col 32}       4{col 42}{txt}Permanently sick
+{col 20}{res}       436{col 32}       4{col 42}{txt}Permanently sick
 {col 20}{res}        96{col 32}       5{col 42}{txt}Homemaker
 {col 20}{res}        45{col 32}      97{col 42}{txt}Other
 
@@ -440,11 +441,11 @@ saved
 {col 19}Type: Numeric ({res}float{txt})
 
 {col 18}Range: [{res}2020{txt},{res}2022{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.  Value
-{col 20}{res}     5,076{col 32}2020
-{col 20}     4,876{col 32}2022
+{col 20}{res}     5,075{col 32}2020
+{col 20}     4,870{col 32}2022
 
 {txt}{hline}
 {res}income{right:(unlabeled)}
@@ -453,13 +454,13 @@ saved
 {col 19}Type: Numeric ({res}float{txt})
 
 {col 18}Range: [{res}-.00007374{txt},{res}170697.95{txt}]{col 55}Units: {res}1.000e-20
-{col 10}{txt}Unique values: {res}4,456{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}4,450{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
-{txt}{col 19}Mean: {res}{ralign 7:10092.8}
-{txt}{col 14}Std. dev.: {res}{ralign 7:8969.56}
+{txt}{col 19}Mean: {res}{ralign 7:10096.1}
+{txt}{col 14}Std. dev.: {res}{ralign 7:8970.94}
 
 {txt}{col 12}Percentiles: {col 25}{ralign 7:10%}{ralign 10:25%}{ralign 10:50%}{ralign 10:75%}{ralign 10:90%}
-{res}{col 25}{ralign 7:1999.55}{ralign 10:    4920}{ralign 10:    7800}{ralign 10: 12895.6}{ralign 10:   20000}
+{res}{col 25}{ralign 7:2000}{ralign 10:    4920}{ralign 10:    7800}{ralign 10: 12898.5}{ralign 10:   20000}
 
 {txt}{hline}
 {res}id{right:group(mergeid)}
@@ -468,13 +469,13 @@ saved
 {col 19}Type: Numeric ({res}float{txt})
 
 {col 18}Range: [{res}1{txt},{res}5101{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}5,086{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}5,086{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
-{txt}{col 19}Mean: {res}{ralign 7:2559.02}
-{txt}{col 14}Std. dev.: {res}{ralign 7:1474.17}
+{txt}{col 19}Mean: {res}{ralign 7:2559.4}
+{txt}{col 14}Std. dev.: {res}{ralign 7:1474.54}
 
 {txt}{col 12}Percentiles: {col 25}{ralign 7:10%}{ralign 10:25%}{ralign 10:50%}{ralign 10:75%}{ralign 10:90%}
-{res}{col 25}{ralign 7:513}{ralign 10:  1281.5}{ralign 10:  2563.5}{ralign 10:  3837.5}{ralign 10:    4596}
+{res}{col 25}{ralign 7:512}{ralign 10:    1281}{ralign 10:    2565}{ralign 10:    3838}{ralign 10:    4597}
 
 {txt}{hline}
 {res}educ{right:(unlabeled)}
@@ -484,13 +485,13 @@ saved
 {ralign 22:Label}: {res:educL}
 
 {col 18}Range: [{res}0{txt},{res}2{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}3{col 51}{txt}Missing .: {res}0{txt}/{res}9,952
+{col 10}{txt}Unique values: {res}3{col 51}{txt}Missing .: {res}0{txt}/{res}9,945
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}     1,775{col 32}       0{col 42}{txt}Less than primary, primary and
+{col 20}{res}     1,772{col 32}       0{col 42}{txt}Less than primary, primary and
 {col 42}lower secondary education
 {col 42}(ISCED levels 0-2)
-{col 20}{res}     5,234{col 32}       1{col 42}{txt}Upper secondary and
+{col 20}{res}     5,230{col 32}       1{col 42}{txt}Upper secondary and
 {col 42}post-secondary non-tertiary
 {col 42}education (ISCED levels 3 and
 {col 42}4)
@@ -499,7 +500,24 @@ saved
 {res}Click to Open File:  {browse "report.doc"}
 {txt}
 {com}. 
-. vioplot age, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
+. hist ypen3 if ypen3>0, scheme(s2color) xlabel(0(1000)7000,angle(0) labsize(small) grid) ylabel(0.000(0.0002)0.001,angle(0) labsize(small) grid format(%9.0gc)) 
+{txt}(bin={res}30{txt}, start={res}40{txt}, width={res}225.86667{txt})
+{res}{txt}
+{com}. graph export benefits.png, replace height(2400)
+{txt}{p 0 4 2}
+(file {bf}
+benefits.png{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+benefits.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. vioplot age, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
 {txt}
 {com}. graph export sample.png, replace height(2400)
 {txt}{p 0 4 2}
@@ -534,23 +552,23 @@ format
 {com}. 
 . asdoc spearman single ypen3 gender cjs age educ sphus country income gali id Qyear sphus, save(report.doc) append
 {res}
-{txt}Number of observations = {res}9,952
+{txt}Number of observations = {res}9,945
 
              {txt}{c |}   single    ypen3   gender      cjs      age     educ    sphus  country   income     gali       id    Qyear    sphus
 {hline 13}{c +}{hline 117}
       single {c |} {res}  1.0000 
-       {txt}ypen3 {c |} {res} -0.0096   1.0000 
-      {txt}gender {c |} {res}  0.3013  -0.0183   1.0000 
-         {txt}cjs {c |} {res} -0.1685   0.2522  -0.0665   1.0000 
-         {txt}age {c |} {res}  0.2603  -0.1646   0.0716  -0.7429   1.0000 
-        {txt}educ {c |} {res} -0.1051  -0.0669   0.0455   0.1544  -0.2074   1.0000 
-       {txt}sphus {c |} {res}  0.0935   0.2086  -0.0050  -0.2445   0.3377  -0.2319   1.0000 
-     {txt}country {c |} {res} -0.0445  -0.0944  -0.0115   0.0277  -0.0851   0.0267  -0.0232   1.0000 
-      {txt}income {c |} {res} -0.4997  -0.1257  -0.1489   0.0389  -0.0763   0.2033  -0.1560  -0.3441   1.0000 
-        {txt}gali {c |} {res}  0.0865   0.2264   0.0208  -0.2098   0.2909  -0.1698   0.5394  -0.0199  -0.1441   1.0000 
-          {txt}id {c |} {res} -0.0448  -0.0924  -0.0068   0.0230  -0.0729   0.0289  -0.0243   0.8979  -0.3002  -0.0243   1.0000 
-       {txt}Qyear {c |} {res}  0.0286  -0.0337   0.0136  -0.0629   0.0851   0.0045   0.0147   0.0042   0.0789   0.0259   0.0038   1.0000 
-       {txt}sphus {c |} {res}  0.0935   0.2086  -0.0050  -0.2445   0.3377  -0.2319   1.0000  -0.0232  -0.1560   0.5394  -0.0243   0.0147   1.0000 
+       {txt}ypen3 {c |} {res} -0.0097   1.0000 
+      {txt}gender {c |} {res}  0.3012  -0.0174   1.0000 
+         {txt}cjs {c |} {res} -0.1691   0.2510  -0.0667   1.0000 
+         {txt}age {c |} {res}  0.2609  -0.1638   0.0717  -0.7428   1.0000 
+        {txt}educ {c |} {res} -0.1050  -0.0654   0.0452   0.1552  -0.2079   1.0000 
+       {txt}sphus {c |} {res}  0.0936   0.2095  -0.0052  -0.2444   0.3377  -0.2321   1.0000 
+     {txt}country {c |} {res} -0.0444  -0.0934  -0.0116   0.0281  -0.0854   0.0262  -0.0231   1.0000 
+      {txt}income {c |} {res} -0.4996  -0.1248  -0.1491   0.0401  -0.0771   0.2030  -0.1564  -0.3446   1.0000 
+        {txt}gali {c |} {res}  0.0862   0.2267   0.0206  -0.2104   0.2914  -0.1698   0.5395  -0.0195  -0.1439   1.0000 
+          {txt}id {c |} {res} -0.0447  -0.0920  -0.0068   0.0232  -0.0732   0.0286  -0.0242   0.8980  -0.3005  -0.0242   1.0000 
+       {txt}Qyear {c |} {res}  0.0285  -0.0355   0.0137  -0.0633   0.0854   0.0050   0.0145   0.0048   0.0791   0.0255   0.0041   1.0000 
+       {txt}sphus {c |} {res}  0.0936   0.2095  -0.0052  -0.2444   0.3377  -0.2321   1.0000  -0.0231  -0.1564   0.5395  -0.0242   0.0145   1.0000 
 Click to Open File:  {browse "report.doc"}
 {txt}
 {com}. 
@@ -574,42 +592,42 @@ Click to Open File:  {browse "report.doc"}
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-13059.972}  
-Iteration 1:{space 2}Log likelihood = {res:-8969.4753}  
-Iteration 2:{space 2}Log likelihood = {res:-8848.5585}  
-Iteration 3:{space 2}Log likelihood = {res:-8845.8105}  
-Iteration 4:{space 2}Log likelihood = {res:-8845.8086}  
-Iteration 5:{space 2}Log likelihood = {res:-8845.8086}  
+{txt}Iteration 0:{space 2}Log likelihood = {res: -12985.23}  
+Iteration 1:{space 2}Log likelihood = {res:-8884.6955}  
+Iteration 2:{space 2}Log likelihood = {res:-8760.2216}  
+Iteration 3:{space 2}Log likelihood = {res:-8757.2061}  
+Iteration 4:{space 2}Log likelihood = {res:-8757.2031}  
+Iteration 5:{space 2}Log likelihood = {res:-8757.2031}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-12748.166}  
-Iteration 1:{space 2}Log likelihood = {res:-8956.6397}  
-Iteration 2:{space 2}Log likelihood = {res:-8402.0038}  
-Iteration 3:{space 2}Log likelihood = {res:-8347.2466}  
-Iteration 4:{space 2}Log likelihood = {res:-8346.5547}  
-Iteration 5:{space 2}Log likelihood = {res:-8346.5545}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-12670.992}  
+Iteration 1:{space 2}Log likelihood = {res:-8879.4249}  
+Iteration 2:{space 2}Log likelihood = {res:-8317.5857}  
+Iteration 3:{space 2}Log likelihood = {res:-8259.0713}  
+Iteration 4:{space 2}Log likelihood = {res:-8258.2286}  
+Iteration 5:{space 2}Log likelihood = {res:-8258.2283}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-45249.222
-{txt}Iteration 1:  Log likelihood = {res}-45212.213
-{txt}Iteration 2:  Log likelihood = {res}-45211.856
-{txt}Iteration 3:  Log likelihood = {res}-45211.856
+Iteration 0:  Log likelihood = {res}-44867.876
+{txt}Iteration 1:  Log likelihood = {res}-44820.602
+{txt}Iteration 2:  Log likelihood = {res}-44819.948
+{txt}Iteration 3:  Log likelihood = {res}-44819.948
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-11974.249}  
-Iteration 1:{space 2}Log likelihood = {res:-9486.0836}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res: -8892.275}  
-Iteration 3:{space 2}Log likelihood = {res:-8211.8878}  
-Iteration 4:{space 2}Log likelihood = {res:-8201.1002}  
-Iteration 5:{space 2}Log likelihood = {res:-8198.0475}  
-Iteration 6:{space 2}Log likelihood = {res:-8198.0437}  
-Iteration 7:{space 2}Log likelihood = {res:-8198.0437}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-11829.704}  
+Iteration 1:{space 2}Log likelihood = {res:-9335.9995}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-8353.5036}  
+Iteration 3:{space 2}Log likelihood = {res:-8115.3181}  
+Iteration 4:{space 2}Log likelihood = {res:-8098.1776}  
+Iteration 5:{space 2}Log likelihood = {res:-8098.1554}  
+Iteration 6:{space 2}Log likelihood = {res:-8098.1554}  
+Iteration 7:{space 2}Log likelihood = {res:-8098.1553}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,526}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:767}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,520}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:761}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:4,759}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -621,36 +639,36 @@ Iteration 7:{space 2}Log likelihood = {res:-8198.0437}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:429.43}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-8198.0437}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:428.06}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-8098.1553}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2} 67.89776{col 95}{space 2} 173.9935{col 106}{space 1}    0.39{col 115}{space 3}0.696{col 123}{space 4}-273.1233{col 136}{space 3} 408.9188
+{space 74}Female  {c |}{col 83}{res}{space 2} 71.14944{col 95}{space 2}  167.157{col 106}{space 1}    0.43{col 115}{space 3}0.670{col 123}{space 4}-256.4722{col 136}{space 3} 398.7711
 {txt}{space 81} {c |}
-{space 78}age {c |}{col 83}{res}{space 2}-141.9375{col 95}{space 2} 8.822652{col 106}{space 1}  -16.09{col 115}{space 3}0.000{col 123}{space 4}-159.2296{col 136}{space 3}-124.6454
+{space 78}age {c |}{col 83}{res}{space 2}-136.3039{col 95}{space 2} 8.466988{col 106}{space 1}  -16.10{col 115}{space 3}0.000{col 123}{space 4}-152.8989{col 136}{space 3} -119.709
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2} 3129.336{col 95}{space 2} 212.4268{col 106}{space 1}   14.73{col 115}{space 3}0.000{col 123}{space 4} 2712.987{col 136}{space 3} 3545.685
+{space 73}Limited  {c |}{col 83}{res}{space 2} 2984.743{col 95}{space 2} 203.0102{col 106}{space 1}   14.70{col 115}{space 3}0.000{col 123}{space 4}  2586.85{col 136}{space 3} 3382.635
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} -653.254{col 95}{space 2} 217.7769{col 106}{space 1}   -3.00{col 115}{space 3}0.003{col 123}{space 4}-1080.089{col 136}{space 3} -226.419
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1353.043{col 95}{space 2} 265.9793{col 106}{space 1}   -5.09{col 115}{space 3}0.000{col 123}{space 4}-1874.353{col 136}{space 3}-831.7329
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-580.6917{col 95}{space 2} 209.8049{col 106}{space 1}   -2.77{col 115}{space 3}0.006{col 123}{space 4}-991.9017{col 136}{space 3}-169.4817
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1240.876{col 95}{space 2} 255.6194{col 106}{space 1}   -4.85{col 115}{space 3}0.000{col 123}{space 4}-1741.881{col 136}{space 3}-739.8708
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.0763606{col 95}{space 2} .0097108{col 106}{space 1}   -7.86{col 115}{space 3}0.000{col 123}{space 4}-.0953934{col 136}{space 3}-.0573278
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 5497.181{col 95}{space 2} 664.9515{col 106}{space 1}    8.27{col 115}{space 3}0.000{col 123}{space 4}   4193.9{col 136}{space 3} 6800.462
+{space 75}income {c |}{col 83}{res}{space 2} -.072545{col 95}{space 2} .0092093{col 106}{space 1}   -7.88{col 115}{space 3}0.000{col 123}{space 4}-.0905949{col 136}{space 3}-.0544951
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 5269.962{col 95}{space 2} 637.9724{col 106}{space 1}    8.26{col 115}{space 3}0.000{col 123}{space 4} 4019.559{col 136}{space 3} 6520.365
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2}  2512.79{col 95}{space 2} 113.4388{col 106}{space 1}   22.15{col 115}{space 3}0.000{col 123}{space 4} 2290.454{col 136}{space 3} 2735.126
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1997.686{col 95}{space 2} 73.26852{col 106}{space 1}   27.27{col 115}{space 3}0.000{col 123}{space 4} 1854.083{col 136}{space 3}  2141.29
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2450.199{col 95}{space 2} 108.1976{col 106}{space 1}   22.65{col 115}{space 3}0.000{col 123}{space 4} 2238.136{col 136}{space 3} 2662.262
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1844.299{col 95}{space 2} 69.26943{col 106}{space 1}   26.63{col 115}{space 3}0.000{col 123}{space 4} 1708.534{col 136}{space 3} 1980.065
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .6127313{col 95}{space 2} .0271584{col 123}{space 4} .5586039{col 136}{space 3} .6647491
+                                                                              rho {c |}{col 83}{res}{space 2} .6383338{col 95}{space 2} .0262833{col 123}{space 4} .5857132{col 136}{space 3} .6884586
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}297.02{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}320.15{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. 
@@ -660,42 +678,42 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-13059.972}  
-Iteration 1:{space 2}Log likelihood = {res:-8969.4753}  
-Iteration 2:{space 2}Log likelihood = {res:-8848.5585}  
-Iteration 3:{space 2}Log likelihood = {res:-8845.8105}  
-Iteration 4:{space 2}Log likelihood = {res:-8845.8086}  
-Iteration 5:{space 2}Log likelihood = {res:-8845.8086}  
+{txt}Iteration 0:{space 2}Log likelihood = {res: -12985.23}  
+Iteration 1:{space 2}Log likelihood = {res:-8884.6955}  
+Iteration 2:{space 2}Log likelihood = {res:-8760.2216}  
+Iteration 3:{space 2}Log likelihood = {res:-8757.2061}  
+Iteration 4:{space 2}Log likelihood = {res:-8757.2031}  
+Iteration 5:{space 2}Log likelihood = {res:-8757.2031}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-12748.166}  
-Iteration 1:{space 2}Log likelihood = {res:-8956.6397}  
-Iteration 2:{space 2}Log likelihood = {res:-8402.0038}  
-Iteration 3:{space 2}Log likelihood = {res:-8347.2466}  
-Iteration 4:{space 2}Log likelihood = {res:-8346.5547}  
-Iteration 5:{space 2}Log likelihood = {res:-8346.5545}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-12670.992}  
+Iteration 1:{space 2}Log likelihood = {res:-8879.4249}  
+Iteration 2:{space 2}Log likelihood = {res:-8317.5857}  
+Iteration 3:{space 2}Log likelihood = {res:-8259.0713}  
+Iteration 4:{space 2}Log likelihood = {res:-8258.2286}  
+Iteration 5:{space 2}Log likelihood = {res:-8258.2283}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-45249.222
-{txt}Iteration 1:  Log likelihood = {res}-45212.213
-{txt}Iteration 2:  Log likelihood = {res}-45211.856
-{txt}Iteration 3:  Log likelihood = {res}-45211.856
+Iteration 0:  Log likelihood = {res}-44867.876
+{txt}Iteration 1:  Log likelihood = {res}-44820.602
+{txt}Iteration 2:  Log likelihood = {res}-44819.948
+{txt}Iteration 3:  Log likelihood = {res}-44819.948
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-11974.249}  
-Iteration 1:{space 2}Log likelihood = {res:-9486.0836}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res: -8892.275}  
-Iteration 3:{space 2}Log likelihood = {res:-8211.8878}  
-Iteration 4:{space 2}Log likelihood = {res:-8201.1002}  
-Iteration 5:{space 2}Log likelihood = {res:-8198.0475}  
-Iteration 6:{space 2}Log likelihood = {res:-8198.0437}  
-Iteration 7:{space 2}Log likelihood = {res:-8198.0437}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-11829.704}  
+Iteration 1:{space 2}Log likelihood = {res:-9335.9995}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-8353.5036}  
+Iteration 3:{space 2}Log likelihood = {res:-8115.3181}  
+Iteration 4:{space 2}Log likelihood = {res:-8098.1776}  
+Iteration 5:{space 2}Log likelihood = {res:-8098.1554}  
+Iteration 6:{space 2}Log likelihood = {res:-8098.1554}  
+Iteration 7:{space 2}Log likelihood = {res:-8098.1553}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,526}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:767}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,520}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:761}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:4,759}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -707,36 +725,36 @@ Iteration 7:{space 2}Log likelihood = {res:-8198.0437}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:429.43}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-8198.0437}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:428.06}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-8098.1553}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2} 67.89776{col 95}{space 2} 173.9935{col 106}{space 1}    0.39{col 115}{space 3}0.696{col 123}{space 4}-273.1233{col 136}{space 3} 408.9188
+{space 74}Female  {c |}{col 83}{res}{space 2} 71.14944{col 95}{space 2}  167.157{col 106}{space 1}    0.43{col 115}{space 3}0.670{col 123}{space 4}-256.4722{col 136}{space 3} 398.7711
 {txt}{space 81} {c |}
-{space 78}age {c |}{col 83}{res}{space 2}-141.9375{col 95}{space 2} 8.822652{col 106}{space 1}  -16.09{col 115}{space 3}0.000{col 123}{space 4}-159.2296{col 136}{space 3}-124.6454
+{space 78}age {c |}{col 83}{res}{space 2}-136.3039{col 95}{space 2} 8.466988{col 106}{space 1}  -16.10{col 115}{space 3}0.000{col 123}{space 4}-152.8989{col 136}{space 3} -119.709
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2} 3129.336{col 95}{space 2} 212.4268{col 106}{space 1}   14.73{col 115}{space 3}0.000{col 123}{space 4} 2712.987{col 136}{space 3} 3545.685
+{space 73}Limited  {c |}{col 83}{res}{space 2} 2984.743{col 95}{space 2} 203.0102{col 106}{space 1}   14.70{col 115}{space 3}0.000{col 123}{space 4}  2586.85{col 136}{space 3} 3382.635
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} -653.254{col 95}{space 2} 217.7769{col 106}{space 1}   -3.00{col 115}{space 3}0.003{col 123}{space 4}-1080.089{col 136}{space 3} -226.419
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1353.043{col 95}{space 2} 265.9793{col 106}{space 1}   -5.09{col 115}{space 3}0.000{col 123}{space 4}-1874.353{col 136}{space 3}-831.7329
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-580.6917{col 95}{space 2} 209.8049{col 106}{space 1}   -2.77{col 115}{space 3}0.006{col 123}{space 4}-991.9017{col 136}{space 3}-169.4817
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1240.876{col 95}{space 2} 255.6194{col 106}{space 1}   -4.85{col 115}{space 3}0.000{col 123}{space 4}-1741.881{col 136}{space 3}-739.8708
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.0763606{col 95}{space 2} .0097108{col 106}{space 1}   -7.86{col 115}{space 3}0.000{col 123}{space 4}-.0953934{col 136}{space 3}-.0573278
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 5497.181{col 95}{space 2} 664.9515{col 106}{space 1}    8.27{col 115}{space 3}0.000{col 123}{space 4}   4193.9{col 136}{space 3} 6800.462
+{space 75}income {c |}{col 83}{res}{space 2} -.072545{col 95}{space 2} .0092093{col 106}{space 1}   -7.88{col 115}{space 3}0.000{col 123}{space 4}-.0905949{col 136}{space 3}-.0544951
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 5269.962{col 95}{space 2} 637.9724{col 106}{space 1}    8.26{col 115}{space 3}0.000{col 123}{space 4} 4019.559{col 136}{space 3} 6520.365
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2}  2512.79{col 95}{space 2} 113.4388{col 106}{space 1}   22.15{col 115}{space 3}0.000{col 123}{space 4} 2290.454{col 136}{space 3} 2735.126
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1997.686{col 95}{space 2} 73.26852{col 106}{space 1}   27.27{col 115}{space 3}0.000{col 123}{space 4} 1854.083{col 136}{space 3}  2141.29
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2450.199{col 95}{space 2} 108.1976{col 106}{space 1}   22.65{col 115}{space 3}0.000{col 123}{space 4} 2238.136{col 136}{space 3} 2662.262
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1844.299{col 95}{space 2} 69.26943{col 106}{space 1}   26.63{col 115}{space 3}0.000{col 123}{space 4} 1708.534{col 136}{space 3} 1980.065
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .6127313{col 95}{space 2} .0271584{col 123}{space 4} .5586039{col 136}{space 3} .6647491
+                                                                              rho {c |}{col 83}{res}{space 2} .6383338{col 95}{space 2} .0262833{col 123}{space 4} .5857132{col 136}{space 3} .6884586
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}297.02{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}320.15{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreEE) replace
@@ -753,13 +771,13 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 . generate ageD=0
 {txt}
 {com}. replace ageD=1 if age>=55 & age<=64
-{txt}(2,792 real changes made)
+{txt}(2,789 real changes made)
 
 {com}. replace ageD=2 if age>=65 & age<=74
-{txt}(3,130 real changes made)
+{txt}(3,129 real changes made)
 
 {com}. replace ageD=3 if age>=75 & age<=84
-{txt}(2,531 real changes made)
+{txt}(2,530 real changes made)
 
 {com}. replace ageD=4 if age>=85
 {txt}(848 real changes made)
@@ -775,41 +793,42 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-13059.972}  
-Iteration 1:{space 2}Log likelihood = {res:-8969.4753}  
-Iteration 2:{space 2}Log likelihood = {res:-8848.5585}  
-Iteration 3:{space 2}Log likelihood = {res:-8845.8105}  
-Iteration 4:{space 2}Log likelihood = {res:-8845.8086}  
-Iteration 5:{space 2}Log likelihood = {res:-8845.8086}  
+{txt}Iteration 0:{space 2}Log likelihood = {res: -12985.23}  
+Iteration 1:{space 2}Log likelihood = {res:-8884.6955}  
+Iteration 2:{space 2}Log likelihood = {res:-8760.2216}  
+Iteration 3:{space 2}Log likelihood = {res:-8757.2061}  
+Iteration 4:{space 2}Log likelihood = {res:-8757.2031}  
+Iteration 5:{space 2}Log likelihood = {res:-8757.2031}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-12648.913}  
-Iteration 1:{space 2}Log likelihood = {res:-8761.5091}  
-Iteration 2:{space 2}Log likelihood = {res:-8249.2098}  
-Iteration 3:{space 2}Log likelihood = {res:-8214.6742}  
-Iteration 4:{space 2}Log likelihood = {res:-8214.5255}  
-Iteration 5:{space 2}Log likelihood = {res:-8214.5255}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-12567.169}  
+Iteration 1:{space 2}Log likelihood = {res:-8672.9415}  
+Iteration 2:{space 2}Log likelihood = {res:-8157.0625}  
+Iteration 3:{space 2}Log likelihood = {res:-8121.2781}  
+Iteration 4:{space 2}Log likelihood = {res:-8121.1218}  
+Iteration 5:{space 2}Log likelihood = {res:-8121.1218}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res} -45078.51
-{txt}Iteration 1:  Log likelihood = {res}-45041.929
-{txt}Iteration 2:  Log likelihood = {res}-45041.573
-{txt}Iteration 3:  Log likelihood = {res}-45041.573
+Iteration 0:  Log likelihood = {res} -44682.34
+{txt}Iteration 1:  Log likelihood = {res}-44635.023
+{txt}Iteration 2:  Log likelihood = {res}-44634.354
+{txt}Iteration 3:  Log likelihood = {res}-44634.354
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-11890.639}  
-Iteration 1:{space 2}Log likelihood = {res: -9420.102}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-8432.7335}  
-Iteration 3:{space 2}Log likelihood = {res:-8207.1673}  
-Iteration 4:{space 2}Log likelihood = {res:-8090.1718}  
-Iteration 5:{space 2}Log likelihood = {res: -8088.846}  
-Iteration 6:{space 2}Log likelihood = {res:-8088.8458}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-11734.867}  
+Iteration 1:{space 2}Log likelihood = {res:-9278.6293}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-8341.6104}  
+Iteration 3:{space 2}Log likelihood = {res:-8037.9167}  
+Iteration 4:{space 2}Log likelihood = {res:-7985.8066}  
+Iteration 5:{space 2}Log likelihood = {res:-7984.3365}  
+Iteration 6:{space 2}Log likelihood = {res:-7984.3305}  
+Iteration 7:{space 2}Log likelihood = {res:-7984.3305}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,526}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:767}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,520}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:761}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:4,759}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -821,41 +840,41 @@ Iteration 6:{space 2}Log likelihood = {res:-8088.8458}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:9})}{col 70} = {res}{ralign 6:601.85}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-8088.8458}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:9})}{col 70} = {res}{ralign 6:608.68}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-7984.3305}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2} 74.80538{col 95}{space 2} 159.7569{col 106}{space 1}    0.47{col 115}{space 3}0.640{col 123}{space 4}-238.3124{col 136}{space 3} 387.9231
+{space 74}Female  {c |}{col 83}{res}{space 2} 81.92267{col 95}{space 2} 152.6722{col 106}{space 1}    0.54{col 115}{space 3}0.592{col 123}{space 4}-217.3094{col 136}{space 3} 381.1547
 {txt}{space 81} {c |}
 {space 77}ageD {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 596.8779{col 95}{space 2} 251.9293{col 106}{space 1}    2.37{col 115}{space 3}0.018{col 123}{space 4} 103.1057{col 136}{space 3}  1090.65
-{txt}{space 53}Between 65 and 74 years old  {c |}{col 83}{res}{space 2}-3029.058{col 95}{space 2} 279.6792{col 106}{space 1}  -10.83{col 115}{space 3}0.000{col 123}{space 4}-3577.219{col 136}{space 3}-2480.896
-{txt}{space 53}Between 75 and 84 years old  {c |}{col 83}{res}{space 2}-3289.274{col 95}{space 2} 288.1068{col 106}{space 1}  -11.42{col 115}{space 3}0.000{col 123}{space 4}-3853.953{col 136}{space 3}-2724.595
-{txt}{space 61}Older than 85 years  {c |}{col 83}{res}{space 2}-3271.839{col 95}{space 2}  344.263{col 106}{space 1}   -9.50{col 115}{space 3}0.000{col 123}{space 4}-3946.582{col 136}{space 3}-2597.096
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 632.0103{col 95}{space 2} 238.2304{col 106}{space 1}    2.65{col 115}{space 3}0.008{col 123}{space 4} 165.0874{col 136}{space 3} 1098.933
+{txt}{space 53}Between 65 and 74 years old  {c |}{col 83}{res}{space 2}-2835.626{col 95}{space 2} 265.4856{col 106}{space 1}  -10.68{col 115}{space 3}0.000{col 123}{space 4}-3355.968{col 136}{space 3}-2315.284
+{txt}{space 53}Between 75 and 84 years old  {c |}{col 83}{res}{space 2}-3133.635{col 95}{space 2} 274.2828{col 106}{space 1}  -11.42{col 115}{space 3}0.000{col 123}{space 4}-3671.219{col 136}{space 3} -2596.05
+{txt}{space 61}Older than 85 years  {c |}{col 83}{res}{space 2}-3071.775{col 95}{space 2} 326.5054{col 106}{space 1}   -9.41{col 115}{space 3}0.000{col 123}{space 4}-3711.714{col 136}{space 3}-2431.836
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2}  3124.31{col 95}{space 2} 201.2362{col 106}{space 1}   15.53{col 115}{space 3}0.000{col 123}{space 4} 2729.894{col 136}{space 3} 3518.726
+{space 73}Limited  {c |}{col 83}{res}{space 2} 2969.188{col 95}{space 2}   191.38{col 106}{space 1}   15.51{col 115}{space 3}0.000{col 123}{space 4}  2594.09{col 136}{space 3} 3344.286
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-581.0797{col 95}{space 2} 199.3518{col 106}{space 1}   -2.91{col 115}{space 3}0.004{col 123}{space 4}-971.8021{col 136}{space 3}-190.3574
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1434.437{col 95}{space 2} 245.4567{col 106}{space 1}   -5.84{col 115}{space 3}0.000{col 123}{space 4}-1915.523{col 136}{space 3}-953.3504
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-513.1385{col 95}{space 2} 191.0627{col 106}{space 1}   -2.69{col 115}{space 3}0.007{col 123}{space 4}-887.6145{col 136}{space 3}-138.6626
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2} -1317.51{col 95}{space 2} 234.6183{col 106}{space 1}   -5.62{col 115}{space 3}0.000{col 123}{space 4}-1777.353{col 136}{space 3}-857.6661
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.0629668{col 95}{space 2} .0087664{col 106}{space 1}   -7.18{col 115}{space 3}0.000{col 123}{space 4}-.0801486{col 136}{space 3} -.045785
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2380.608{col 95}{space 2} 364.0823{col 106}{space 1}   -6.54{col 115}{space 3}0.000{col 123}{space 4}-3094.197{col 136}{space 3} -1667.02
+{space 75}income {c |}{col 83}{res}{space 2}-.0593883{col 95}{space 2} .0082612{col 106}{space 1}   -7.19{col 115}{space 3}0.000{col 123}{space 4}-.0755799{col 136}{space 3}-.0431967
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2323.261{col 95}{space 2} 346.5628{col 106}{space 1}   -6.70{col 115}{space 3}0.000{col 123}{space 4}-3002.511{col 136}{space 3} -1644.01
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2232.263{col 95}{space 2} 103.8189{col 106}{space 1}   21.50{col 115}{space 3}0.000{col 123}{space 4} 2028.782{col 136}{space 3} 2435.744
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2}   1869.6{col 95}{space 2} 68.92764{col 106}{space 1}   27.12{col 115}{space 3}0.000{col 123}{space 4} 1734.504{col 136}{space 3} 2004.696
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2173.036{col 95}{space 2} 98.25424{col 106}{space 1}   22.12{col 115}{space 3}0.000{col 123}{space 4} 1980.461{col 136}{space 3}  2365.61
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1708.848{col 95}{space 2} 64.86905{col 106}{space 1}   26.34{col 115}{space 3}0.000{col 123}{space 4} 1581.707{col 136}{space 3} 1835.989
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .5877284{col 95}{space 2} .0290497{col 123}{space 4} .5300662{col 136}{space 3} .6435539
+                                                                              rho {c |}{col 83}{res}{space 2} .6178923{col 95}{space 2} .0281522{col 123}{space 4} .5616986{col 136}{space 3} .6717037
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}251.36{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}273.58{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityEE) append
@@ -872,10 +891,10 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 . generate ageE=0
 {txt}
 {com}. replace ageE=1 if age>=55 & age<=64
-{txt}(2,792 real changes made)
+{txt}(2,789 real changes made)
 
 {com}. replace ageE=2 if age>=65
-{txt}(6,509 real changes made)
+{txt}(6,507 real changes made)
 
 {com}. label define agel 0 "Less than 55 years old" 1 "Between 55 and 64 years old" 2 "Older than 64 years"
 {txt}
@@ -888,42 +907,41 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-13059.972}  
-Iteration 1:{space 2}Log likelihood = {res:-8969.4753}  
-Iteration 2:{space 2}Log likelihood = {res:-8848.5585}  
-Iteration 3:{space 2}Log likelihood = {res:-8845.8105}  
-Iteration 4:{space 2}Log likelihood = {res:-8845.8086}  
-Iteration 5:{space 2}Log likelihood = {res:-8845.8086}  
+{txt}Iteration 0:{space 2}Log likelihood = {res: -12985.23}  
+Iteration 1:{space 2}Log likelihood = {res:-8884.6955}  
+Iteration 2:{space 2}Log likelihood = {res:-8760.2216}  
+Iteration 3:{space 2}Log likelihood = {res:-8757.2061}  
+Iteration 4:{space 2}Log likelihood = {res:-8757.2031}  
+Iteration 5:{space 2}Log likelihood = {res:-8757.2031}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-12655.689}  
-Iteration 1:{space 2}Log likelihood = {res:-8767.8048}  
-Iteration 2:{space 2}Log likelihood = {res:-8251.3306}  
-Iteration 3:{space 2}Log likelihood = {res:-8216.2557}  
-Iteration 4:{space 2}Log likelihood = {res:-8216.1028}  
-Iteration 5:{space 2}Log likelihood = {res:-8216.1028}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-12573.826}  
+Iteration 1:{space 2}Log likelihood = {res:-8679.1524}  
+Iteration 2:{space 2}Log likelihood = {res:-8159.2818}  
+Iteration 3:{space 2}Log likelihood = {res:-8122.9056}  
+Iteration 4:{space 2}Log likelihood = {res:-8122.7431}  
+Iteration 5:{space 2}Log likelihood = {res:-8122.7431}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-45081.832
-{txt}Iteration 1:  Log likelihood = {res}-45047.601
-{txt}Iteration 2:  Log likelihood = {res}-45047.303
-{txt}Iteration 3:  Log likelihood = {res}-45047.303
+Iteration 0:  Log likelihood = {res}-44685.139
+{txt}Iteration 1:  Log likelihood = {res}-44640.622
+{txt}Iteration 2:  Log likelihood = {res}-44640.061
+{txt}Iteration 3:  Log likelihood = {res} -44640.06
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:  -11888.4}  
-Iteration 1:{space 2}Log likelihood = {res:-9407.8171}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-8426.0436}  
-Iteration 3:{space 2}Log likelihood = {res:-8190.8384}  
-Iteration 4:{space 2}Log likelihood = {res:-8090.4197}  
-Iteration 5:{space 2}Log likelihood = {res:-8089.7072}  
-Iteration 6:{space 2}Log likelihood = {res: -8089.706}  
-Iteration 7:{space 2}Log likelihood = {res: -8089.706}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-11733.307}  
+Iteration 1:{space 2}Log likelihood = {res:-9262.1334}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-8275.6704}  
+Iteration 3:{space 2}Log likelihood = {res:-8011.1638}  
+Iteration 4:{space 2}Log likelihood = {res: -7985.689}  
+Iteration 5:{space 2}Log likelihood = {res:-7985.5156}  
+Iteration 6:{space 2}Log likelihood = {res:-7985.5154}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,526}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:767}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,520}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:761}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:4,759}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -935,39 +953,39 @@ Iteration 7:{space 2}Log likelihood = {res: -8089.706}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:597.41}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-8089.706}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:603.29}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-7985.5154}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2} 62.35313{col 95}{space 2}  159.539{col 106}{space 1}    0.39{col 115}{space 3}0.696{col 123}{space 4}-250.3376{col 136}{space 3} 375.0438
+{space 74}Female  {c |}{col 83}{res}{space 2} 69.05354{col 95}{space 2} 152.4479{col 106}{space 1}    0.45{col 115}{space 3}0.651{col 123}{space 4}-229.7388{col 136}{space 3} 367.8459
 {txt}{space 81} {c |}
 {space 77}ageE {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 592.9421{col 95}{space 2} 252.0415{col 106}{space 1}    2.35{col 115}{space 3}0.019{col 123}{space 4} 98.94985{col 136}{space 3} 1086.934
-{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-3159.591{col 95}{space 2} 262.9301{col 106}{space 1}  -12.02{col 115}{space 3}0.000{col 123}{space 4}-3674.924{col 136}{space 3}-2644.257
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 626.5454{col 95}{space 2} 238.3319{col 106}{space 1}    2.63{col 115}{space 3}0.009{col 123}{space 4} 159.4235{col 136}{space 3} 1093.667
+{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-2979.174{col 95}{space 2} 249.9052{col 106}{space 1}  -11.92{col 115}{space 3}0.000{col 123}{space 4}-3468.979{col 136}{space 3}-2489.369
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2} 3114.176{col 95}{space 2} 201.3249{col 106}{space 1}   15.47{col 115}{space 3}0.000{col 123}{space 4} 2719.587{col 136}{space 3} 3508.766
+{space 73}Limited  {c |}{col 83}{res}{space 2} 2958.171{col 95}{space 2} 191.4826{col 106}{space 1}   15.45{col 115}{space 3}0.000{col 123}{space 4} 2582.872{col 136}{space 3}  3333.47
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-544.0899{col 95}{space 2} 195.6608{col 106}{space 1}   -2.78{col 115}{space 3}0.005{col 123}{space 4}-927.5781{col 136}{space 3}-160.6016
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1414.382{col 95}{space 2} 244.2873{col 106}{space 1}   -5.79{col 115}{space 3}0.000{col 123}{space 4}-1893.177{col 136}{space 3}-935.5882
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-475.8512{col 95}{space 2}  187.452{col 106}{space 1}   -2.54{col 115}{space 3}0.011{col 123}{space 4}-843.2504{col 136}{space 3} -108.452
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1297.553{col 95}{space 2} 233.3868{col 106}{space 1}   -5.56{col 115}{space 3}0.000{col 123}{space 4}-1754.983{col 136}{space 3}-840.1231
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.0623023{col 95}{space 2} .0087611{col 106}{space 1}   -7.11{col 115}{space 3}0.000{col 123}{space 4}-.0794737{col 136}{space 3}-.0451309
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2409.678{col 95}{space 2} 363.5704{col 106}{space 1}   -6.63{col 115}{space 3}0.000{col 123}{space 4}-3122.263{col 136}{space 3}-1697.093
+{space 75}income {c |}{col 83}{res}{space 2}-.0587093{col 95}{space 2} .0082588{col 106}{space 1}   -7.11{col 115}{space 3}0.000{col 123}{space 4}-.0748963{col 136}{space 3}-.0425223
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2351.857{col 95}{space 2} 346.1047{col 106}{space 1}   -6.80{col 115}{space 3}0.000{col 123}{space 4} -3030.21{col 136}{space 3}-1673.505
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2238.428{col 95}{space 2} 103.8497{col 106}{space 1}   21.55{col 115}{space 3}0.000{col 123}{space 4} 2034.887{col 136}{space 3}  2441.97
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1868.205{col 95}{space 2}  68.9285{col 106}{space 1}   27.10{col 115}{space 3}0.000{col 123}{space 4} 1733.108{col 136}{space 3} 2003.303
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2178.042{col 95}{space 2} 98.30976{col 106}{space 1}   22.15{col 115}{space 3}0.000{col 123}{space 4} 1985.359{col 136}{space 3} 2370.726
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1708.686{col 95}{space 2} 64.92615{col 106}{space 1}   26.32{col 115}{space 3}0.000{col 123}{space 4} 1581.433{col 136}{space 3} 1835.939
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .5894256{col 95}{space 2} .0289619{col 123}{space 4} .5319203{col 136}{space 3} .6450675
+                                                                              rho {c |}{col 83}{res}{space 2} .6190231{col 95}{space 2} .0280908{col 123}{space 4} .5629409{col 136}{space 3} .6727077
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}252.79{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}274.46{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationEE) append
@@ -987,42 +1005,41 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-13059.972}  
-Iteration 1:{space 2}Log likelihood = {res:-8969.4753}  
-Iteration 2:{space 2}Log likelihood = {res:-8848.5585}  
-Iteration 3:{space 2}Log likelihood = {res:-8845.8105}  
-Iteration 4:{space 2}Log likelihood = {res:-8845.8086}  
-Iteration 5:{space 2}Log likelihood = {res:-8845.8086}  
+{txt}Iteration 0:{space 2}Log likelihood = {res: -12985.23}  
+Iteration 1:{space 2}Log likelihood = {res:-8884.6955}  
+Iteration 2:{space 2}Log likelihood = {res:-8760.2216}  
+Iteration 3:{space 2}Log likelihood = {res:-8757.2061}  
+Iteration 4:{space 2}Log likelihood = {res:-8757.2031}  
+Iteration 5:{space 2}Log likelihood = {res:-8757.2031}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-12655.689}  
-Iteration 1:{space 2}Log likelihood = {res:-8767.8048}  
-Iteration 2:{space 2}Log likelihood = {res:-8251.3306}  
-Iteration 3:{space 2}Log likelihood = {res:-8216.2557}  
-Iteration 4:{space 2}Log likelihood = {res:-8216.1028}  
-Iteration 5:{space 2}Log likelihood = {res:-8216.1028}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-12573.826}  
+Iteration 1:{space 2}Log likelihood = {res:-8679.1524}  
+Iteration 2:{space 2}Log likelihood = {res:-8159.2818}  
+Iteration 3:{space 2}Log likelihood = {res:-8122.9056}  
+Iteration 4:{space 2}Log likelihood = {res:-8122.7431}  
+Iteration 5:{space 2}Log likelihood = {res:-8122.7431}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-45081.832
-{txt}Iteration 1:  Log likelihood = {res}-45047.601
-{txt}Iteration 2:  Log likelihood = {res}-45047.303
-{txt}Iteration 3:  Log likelihood = {res}-45047.303
+Iteration 0:  Log likelihood = {res}-44685.139
+{txt}Iteration 1:  Log likelihood = {res}-44640.622
+{txt}Iteration 2:  Log likelihood = {res}-44640.061
+{txt}Iteration 3:  Log likelihood = {res} -44640.06
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:  -11888.4}  
-Iteration 1:{space 2}Log likelihood = {res:-9407.8171}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-8426.0436}  
-Iteration 3:{space 2}Log likelihood = {res:-8190.8384}  
-Iteration 4:{space 2}Log likelihood = {res:-8090.4197}  
-Iteration 5:{space 2}Log likelihood = {res:-8089.7072}  
-Iteration 6:{space 2}Log likelihood = {res: -8089.706}  
-Iteration 7:{space 2}Log likelihood = {res: -8089.706}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-11733.307}  
+Iteration 1:{space 2}Log likelihood = {res:-9262.1334}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-8275.6704}  
+Iteration 3:{space 2}Log likelihood = {res:-8011.1638}  
+Iteration 4:{space 2}Log likelihood = {res: -7985.689}  
+Iteration 5:{space 2}Log likelihood = {res:-7985.5156}  
+Iteration 6:{space 2}Log likelihood = {res:-7985.5154}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,526}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:767}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:5,520}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:761}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:4,759}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -1034,39 +1051,39 @@ Iteration 7:{space 2}Log likelihood = {res: -8089.706}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:597.41}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-8089.706}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:603.29}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-7985.5154}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2} 62.35313{col 95}{space 2}  159.539{col 106}{space 1}    0.39{col 115}{space 3}0.696{col 123}{space 4}-250.3376{col 136}{space 3} 375.0438
+{space 74}Female  {c |}{col 83}{res}{space 2} 69.05354{col 95}{space 2} 152.4479{col 106}{space 1}    0.45{col 115}{space 3}0.651{col 123}{space 4}-229.7388{col 136}{space 3} 367.8459
 {txt}{space 81} {c |}
 {space 77}ageE {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 592.9421{col 95}{space 2} 252.0415{col 106}{space 1}    2.35{col 115}{space 3}0.019{col 123}{space 4} 98.94985{col 136}{space 3} 1086.934
-{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-3159.591{col 95}{space 2} 262.9301{col 106}{space 1}  -12.02{col 115}{space 3}0.000{col 123}{space 4}-3674.924{col 136}{space 3}-2644.257
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 626.5454{col 95}{space 2} 238.3319{col 106}{space 1}    2.63{col 115}{space 3}0.009{col 123}{space 4} 159.4235{col 136}{space 3} 1093.667
+{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-2979.174{col 95}{space 2} 249.9052{col 106}{space 1}  -11.92{col 115}{space 3}0.000{col 123}{space 4}-3468.979{col 136}{space 3}-2489.369
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2} 3114.176{col 95}{space 2} 201.3249{col 106}{space 1}   15.47{col 115}{space 3}0.000{col 123}{space 4} 2719.587{col 136}{space 3} 3508.766
+{space 73}Limited  {c |}{col 83}{res}{space 2} 2958.171{col 95}{space 2} 191.4826{col 106}{space 1}   15.45{col 115}{space 3}0.000{col 123}{space 4} 2582.872{col 136}{space 3}  3333.47
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-544.0899{col 95}{space 2} 195.6608{col 106}{space 1}   -2.78{col 115}{space 3}0.005{col 123}{space 4}-927.5781{col 136}{space 3}-160.6016
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1414.382{col 95}{space 2} 244.2873{col 106}{space 1}   -5.79{col 115}{space 3}0.000{col 123}{space 4}-1893.177{col 136}{space 3}-935.5882
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2}-475.8512{col 95}{space 2}  187.452{col 106}{space 1}   -2.54{col 115}{space 3}0.011{col 123}{space 4}-843.2504{col 136}{space 3} -108.452
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-1297.553{col 95}{space 2} 233.3868{col 106}{space 1}   -5.56{col 115}{space 3}0.000{col 123}{space 4}-1754.983{col 136}{space 3}-840.1231
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.0623023{col 95}{space 2} .0087611{col 106}{space 1}   -7.11{col 115}{space 3}0.000{col 123}{space 4}-.0794737{col 136}{space 3}-.0451309
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2409.678{col 95}{space 2} 363.5704{col 106}{space 1}   -6.63{col 115}{space 3}0.000{col 123}{space 4}-3122.263{col 136}{space 3}-1697.093
+{space 75}income {c |}{col 83}{res}{space 2}-.0587093{col 95}{space 2} .0082588{col 106}{space 1}   -7.11{col 115}{space 3}0.000{col 123}{space 4}-.0748963{col 136}{space 3}-.0425223
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-2351.857{col 95}{space 2} 346.1047{col 106}{space 1}   -6.80{col 115}{space 3}0.000{col 123}{space 4} -3030.21{col 136}{space 3}-1673.505
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2238.428{col 95}{space 2} 103.8497{col 106}{space 1}   21.55{col 115}{space 3}0.000{col 123}{space 4} 2034.887{col 136}{space 3}  2441.97
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1868.205{col 95}{space 2}  68.9285{col 106}{space 1}   27.10{col 115}{space 3}0.000{col 123}{space 4} 1733.108{col 136}{space 3} 2003.303
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 2178.042{col 95}{space 2} 98.30976{col 106}{space 1}   22.15{col 115}{space 3}0.000{col 123}{space 4} 1985.359{col 136}{space 3} 2370.726
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 1708.686{col 95}{space 2} 64.92615{col 106}{space 1}   26.32{col 115}{space 3}0.000{col 123}{space 4} 1581.433{col 136}{space 3} 1835.939
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .5894256{col 95}{space 2} .0289619{col 123}{space 4} .5319203{col 136}{space 3} .6450675
+                                                                              rho {c |}{col 83}{res}{space 2} .6190231{col 95}{space 2} .0280908{col 123}{space 4} .5629409{col 136}{space 3} .6727077
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}252.79{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}274.46{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeEE) append
@@ -1089,43 +1106,44 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4862.8488}  
-Iteration 1:{space 2}Log likelihood = {res:-2762.1949}  
-Iteration 2:{space 2}Log likelihood = {res:-2652.4901}  
-Iteration 3:{space 2}Log likelihood = {res:-2648.5807}  
-Iteration 4:{space 2}Log likelihood = {res:-2648.5779}  
-Iteration 5:{space 2}Log likelihood = {res:-2648.5779}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4852.3056}  
+Iteration 1:{space 2}Log likelihood = {res:-2746.6214}  
+Iteration 2:{space 2}Log likelihood = {res:-2638.7788}  
+Iteration 3:{space 2}Log likelihood = {res:-2635.3474}  
+Iteration 4:{space 2}Log likelihood = {res:-2635.3462}  
+Iteration 5:{space 2}Log likelihood = {res:-2635.3462}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4794.3696}  
-Iteration 1:{space 2}Log likelihood = {res:-2581.4616}  
-Iteration 2:{space 2}Log likelihood = {res:-2514.2583}  
-Iteration 3:{space 2}Log likelihood = {res:-2511.8334}  
-Iteration 4:{space 2}Log likelihood = {res:-2511.8237}  
-Iteration 5:{space 2}Log likelihood = {res:-2511.8237}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4782.9393}  
+Iteration 1:{space 2}Log likelihood = {res:-2568.3998}  
+Iteration 2:{space 2}Log likelihood = {res:-2500.1795}  
+Iteration 3:{space 2}Log likelihood = {res:-2497.6576}  
+Iteration 4:{space 2}Log likelihood = {res: -2497.648}  
+Iteration 5:{space 2}Log likelihood = {res: -2497.648}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-19482.944
-{txt}Iteration 1:  Log likelihood = {res}-19475.104
-{txt}Iteration 2:  Log likelihood = {res}-19475.077
-{txt}Iteration 3:  Log likelihood = {res}-19475.077
+Iteration 0:  Log likelihood = {res}-19455.305
+{txt}Iteration 1:  Log likelihood = {res}-19447.281
+{txt}Iteration 2:  Log likelihood = {res}-19447.254
+{txt}Iteration 3:  Log likelihood = {res}-19447.254
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4426.2983}  
-Iteration 1:{space 2}Log likelihood = {res:-3129.6521}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-2595.7117}  
-Iteration 3:{space 2}Log likelihood = {res:-2441.8096}  
-Iteration 4:{space 2}Log likelihood = {res:-2440.2936}  
-Iteration 5:{space 2}Log likelihood = {res:-2439.7155}  
-Iteration 6:{space 2}Log likelihood = {res:-2439.7155}  (backed up)
-Iteration 7:{space 2}Log likelihood = {res:-2439.7147}  
-Iteration 8:{space 2}Log likelihood = {res:-2439.7147}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4425.8291}  
+Iteration 1:{space 2}Log likelihood = {res: -3065.691}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-2495.2025}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-2464.7645}  
+Iteration 4:{space 2}Log likelihood = {res:-2432.2161}  
+Iteration 5:{space 2}Log likelihood = {res:-2429.5931}  
+Iteration 6:{space 2}Log likelihood = {res:-2429.5414}  
+Iteration 7:{space 2}Log likelihood = {res:-2429.5412}  
+Iteration 8:{space 2}Log likelihood = {res:  -2429.54}  
+Iteration 9:{space 2}Log likelihood = {res:  -2429.54}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,423}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:218}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,422}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:217}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:2,205}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -1137,36 +1155,36 @@ Iteration 8:{space 2}Log likelihood = {res:-2439.7147}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:100.68}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2439.7147}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:6})}{col 70} = {res}{ralign 6:101.23}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 8:-2429.54}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2}-1256.459{col 95}{space 2} 418.3478{col 106}{space 1}   -3.00{col 115}{space 3}0.003{col 123}{space 4}-2076.406{col 136}{space 3}-436.5129
+{space 74}Female  {c |}{col 83}{res}{space 2}-1237.641{col 95}{space 2} 415.1885{col 106}{space 1}   -2.98{col 115}{space 3}0.003{col 123}{space 4}-2051.396{col 136}{space 3} -423.887
 {txt}{space 81} {c |}
-{space 78}age {c |}{col 83}{res}{space 2}-200.0298{col 95}{space 2} 27.40675{col 106}{space 1}   -7.30{col 115}{space 3}0.000{col 123}{space 4} -253.746{col 136}{space 3}-146.3135
+{space 78}age {c |}{col 83}{res}{space 2}-199.2338{col 95}{space 2} 27.19966{col 106}{space 1}   -7.32{col 115}{space 3}0.000{col 123}{space 4}-252.5441{col 136}{space 3}-145.9234
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2}  3058.35{col 95}{space 2}  422.143{col 106}{space 1}    7.24{col 115}{space 3}0.000{col 123}{space 4} 2230.965{col 136}{space 3} 3885.735
+{space 73}Limited  {c |}{col 83}{res}{space 2} 3080.019{col 95}{space 2} 422.0995{col 106}{space 1}    7.30{col 115}{space 3}0.000{col 123}{space 4} 2252.719{col 136}{space 3} 3907.318
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 352.9785{col 95}{space 2} 696.1143{col 106}{space 1}    0.51{col 115}{space 3}0.612{col 123}{space 4}-1011.381{col 136}{space 3} 1717.337
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-174.7383{col 95}{space 2} 728.8055{col 106}{space 1}   -0.24{col 115}{space 3}0.811{col 123}{space 4}-1603.171{col 136}{space 3} 1253.694
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 346.2898{col 95}{space 2} 690.5571{col 106}{space 1}    0.50{col 115}{space 3}0.616{col 123}{space 4}-1007.177{col 136}{space 3} 1699.757
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-170.2981{col 95}{space 2} 722.8512{col 106}{space 1}   -0.24{col 115}{space 3}0.814{col 123}{space 4} -1587.06{col 136}{space 3} 1246.464
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.1163755{col 95}{space 2} .0280595{col 106}{space 1}   -4.15{col 115}{space 3}0.000{col 123}{space 4}-.1713711{col 136}{space 3}-.0613799
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 6837.853{col 95}{space 2} 1965.434{col 106}{space 1}    3.48{col 115}{space 3}0.001{col 123}{space 4} 2985.674{col 136}{space 3} 10690.03
+{space 75}income {c |}{col 83}{res}{space 2}-.1149494{col 95}{space 2} .0279867{col 106}{space 1}   -4.11{col 115}{space 3}0.000{col 123}{space 4}-.1698024{col 136}{space 3}-.0600964
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2} 6787.196{col 95}{space 2}  1950.55{col 106}{space 1}    3.48{col 115}{space 3}0.001{col 123}{space 4} 2964.187{col 136}{space 3}  10610.2
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 3867.504{col 95}{space 2} 311.0775{col 106}{space 1}   12.43{col 115}{space 3}0.000{col 123}{space 4} 3257.803{col 136}{space 3} 4477.204
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2229.672{col 95}{space 2}  165.724{col 106}{space 1}   13.45{col 115}{space 3}0.000{col 123}{space 4} 1904.859{col 136}{space 3} 2554.486
+{space 73}/sigma_u {c |}{col 83}{res}{space 2} 3823.584{col 95}{space 2} 310.2893{col 106}{space 1}   12.32{col 115}{space 3}0.000{col 123}{space 4} 3215.428{col 136}{space 3}  4431.74
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2241.787{col 95}{space 2} 167.3922{col 106}{space 1}   13.39{col 115}{space 3}0.000{col 123}{space 4} 1913.704{col 136}{space 3}  2569.87
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .7505428{col 95}{space 2}  .037764{col 123}{space 4} .6711213{col 136}{space 3} .8184268
+                                                                              rho {c |}{col 83}{res}{space 2}  .744184{col 95}{space 2} .0389354{col 123}{space 4} .6624081{col 136}{space 3} .8142194
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}144.22{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}136.22{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreLT) append
@@ -1186,43 +1204,43 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4862.8488}  
-Iteration 1:{space 2}Log likelihood = {res:-2762.1949}  
-Iteration 2:{space 2}Log likelihood = {res:-2652.4901}  
-Iteration 3:{space 2}Log likelihood = {res:-2648.5807}  
-Iteration 4:{space 2}Log likelihood = {res:-2648.5779}  
-Iteration 5:{space 2}Log likelihood = {res:-2648.5779}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4852.3056}  
+Iteration 1:{space 2}Log likelihood = {res:-2746.6214}  
+Iteration 2:{space 2}Log likelihood = {res:-2638.7788}  
+Iteration 3:{space 2}Log likelihood = {res:-2635.3474}  
+Iteration 4:{space 2}Log likelihood = {res:-2635.3462}  
+Iteration 5:{space 2}Log likelihood = {res:-2635.3462}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4773.3012}  
-Iteration 1:{space 2}Log likelihood = {res:-2565.0925}  
-Iteration 2:{space 2}Log likelihood = {res:-2484.8288}  
-Iteration 3:{space 2}Log likelihood = {res:-2481.7728}  
-Iteration 4:{space 2}Log likelihood = {res:-2481.7631}  
-Iteration 5:{space 2}Log likelihood = {res:-2481.7631}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4762.4526}  
+Iteration 1:{space 2}Log likelihood = {res:-2552.2572}  
+Iteration 2:{space 2}Log likelihood = {res:-2471.6214}  
+Iteration 3:{space 2}Log likelihood = {res:-2468.4818}  
+Iteration 4:{space 2}Log likelihood = {res:-2468.4724}  
+Iteration 5:{space 2}Log likelihood = {res:-2468.4724}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-19463.113
-{txt}Iteration 1:  Log likelihood = {res}-19454.667
-{txt}Iteration 2:  Log likelihood = {res}-19454.636
+Iteration 0:  Log likelihood = {res}-19435.017
+{txt}Iteration 1:  Log likelihood = {res}-19426.702
+{txt}Iteration 2:  Log likelihood = {res}-19426.674
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4420.6504}  
-Iteration 1:{space 2}Log likelihood = {res:-2956.5443}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-2466.5563}  (not concave)
-Iteration 3:{space 2}Log likelihood = {res:-2451.0076}  
-Iteration 4:{space 2}Log likelihood = {res:-2421.5766}  
-Iteration 5:{space 2}Log likelihood = {res:-2420.0106}  
-Iteration 6:{space 2}Log likelihood = {res:-2419.9666}  
-Iteration 7:{space 2}Log likelihood = {res:-2419.9666}  (backed up)
-Iteration 8:{space 2}Log likelihood = {res:-2419.9661}  
-Iteration 9:{space 2}Log likelihood = {res:-2419.9661}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4420.3106}  
+Iteration 1:{space 2}Log likelihood = {res:-2824.5512}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-2482.2688}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-2458.8406}  (not concave)
+Iteration 4:{space 2}Log likelihood = {res:-2442.6107}  
+Iteration 5:{space 2}Log likelihood = {res:-2413.0602}  
+Iteration 6:{space 2}Log likelihood = {res:-2410.3349}  
+Iteration 7:{space 2}Log likelihood = {res:-2409.7862}  
+Iteration 8:{space 2}Log likelihood = {res:-2409.7862}  (backed up)
+Iteration 9:{space 2}Log likelihood = {res: -2409.786}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,423}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:218}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,422}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:217}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:2,205}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -1234,41 +1252,41 @@ Iteration 9:{space 2}Log likelihood = {res:-2419.9661}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:9})}{col 70} = {res}{ralign 6:122.93}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2419.9661}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:9})}{col 70} = {res}{ralign 6:123.26}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-2409.786}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2}-1226.406{col 95}{space 2} 405.9354{col 106}{space 1}   -3.02{col 115}{space 3}0.003{col 123}{space 4}-2022.025{col 136}{space 3}-430.7874
+{space 74}Female  {c |}{col 83}{res}{space 2}-1206.994{col 95}{space 2} 403.0685{col 106}{space 1}   -2.99{col 115}{space 3}0.003{col 123}{space 4}-1996.994{col 136}{space 3}-416.9942
 {txt}{space 81} {c |}
 {space 77}ageD {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1067.646{col 95}{space 2} 771.8018{col 106}{space 1}    1.38{col 115}{space 3}0.167{col 123}{space 4} -445.058{col 136}{space 3}  2580.35
-{txt}{space 53}Between 65 and 74 years old  {c |}{col 83}{res}{space 2}-2545.243{col 95}{space 2} 873.6784{col 106}{space 1}   -2.91{col 115}{space 3}0.004{col 123}{space 4}-4257.622{col 136}{space 3}-832.8652
-{txt}{space 53}Between 75 and 84 years old  {c |}{col 83}{res}{space 2}-3972.701{col 95}{space 2} 981.3983{col 106}{space 1}   -4.05{col 115}{space 3}0.000{col 123}{space 4}-5896.206{col 136}{space 3}-2049.195
-{txt}{space 61}Older than 85 years  {c |}{col 83}{res}{space 2}-3319.867{col 95}{space 2} 1136.426{col 106}{space 1}   -2.92{col 115}{space 3}0.003{col 123}{space 4}-5547.222{col 136}{space 3}-1092.513
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1072.297{col 95}{space 2} 770.8982{col 106}{space 1}    1.39{col 115}{space 3}0.164{col 123}{space 4}-438.6353{col 136}{space 3}  2583.23
+{txt}{space 53}Between 65 and 74 years old  {c |}{col 83}{res}{space 2}-2528.292{col 95}{space 2} 871.5916{col 106}{space 1}   -2.90{col 115}{space 3}0.004{col 123}{space 4} -4236.58{col 136}{space 3} -820.004
+{txt}{space 53}Between 75 and 84 years old  {c |}{col 83}{res}{space 2} -3942.17{col 95}{space 2} 977.5494{col 106}{space 1}   -4.03{col 115}{space 3}0.000{col 123}{space 4}-5858.132{col 136}{space 3}-2026.208
+{txt}{space 61}Older than 85 years  {c |}{col 83}{res}{space 2}-3311.749{col 95}{space 2} 1132.203{col 106}{space 1}   -2.93{col 115}{space 3}0.003{col 123}{space 4}-5530.827{col 136}{space 3}-1092.671
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2} 3023.438{col 95}{space 2} 412.2912{col 106}{space 1}    7.33{col 115}{space 3}0.000{col 123}{space 4} 2215.362{col 136}{space 3} 3831.513
+{space 73}Limited  {c |}{col 83}{res}{space 2} 3043.425{col 95}{space 2}  412.266{col 106}{space 1}    7.38{col 115}{space 3}0.000{col 123}{space 4} 2235.398{col 136}{space 3} 3851.451
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 396.2017{col 95}{space 2} 698.4553{col 106}{space 1}    0.57{col 115}{space 3}0.571{col 123}{space 4}-972.7456{col 136}{space 3} 1765.149
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-140.2608{col 95}{space 2} 727.7094{col 106}{space 1}   -0.19{col 115}{space 3}0.847{col 123}{space 4}-1566.545{col 136}{space 3} 1286.023
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 388.2117{col 95}{space 2} 693.2673{col 106}{space 1}    0.56{col 115}{space 3}0.575{col 123}{space 4}-970.5672{col 136}{space 3} 1746.991
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}-138.1068{col 95}{space 2} 722.2035{col 106}{space 1}   -0.19{col 115}{space 3}0.848{col 123}{space 4}  -1553.6{col 136}{space 3} 1277.386
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.1087979{col 95}{space 2} .0271342{col 106}{space 1}   -4.01{col 115}{space 3}0.000{col 123}{space 4}  -.16198{col 136}{space 3}-.0556158
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5421.922{col 95}{space 2} 1095.619{col 106}{space 1}   -4.95{col 115}{space 3}0.000{col 123}{space 4}-7569.295{col 136}{space 3}-3274.549
+{space 75}income {c |}{col 83}{res}{space 2}-.1073608{col 95}{space 2} .0270586{col 106}{space 1}   -3.97{col 115}{space 3}0.000{col 123}{space 4}-.1603946{col 136}{space 3} -.054327
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5432.212{col 95}{space 2} 1092.113{col 106}{space 1}   -4.97{col 115}{space 3}0.000{col 123}{space 4}-7572.715{col 136}{space 3}-3291.709
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 3647.767{col 95}{space 2} 297.3149{col 106}{space 1}   12.27{col 115}{space 3}0.000{col 123}{space 4}  3065.04{col 136}{space 3} 4230.493
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2215.556{col 95}{space 2} 166.4085{col 106}{space 1}   13.31{col 115}{space 3}0.000{col 123}{space 4} 1889.401{col 136}{space 3}  2541.71
+{space 73}/sigma_u {c |}{col 83}{res}{space 2}  3607.48{col 95}{space 2} 296.8856{col 106}{space 1}   12.15{col 115}{space 3}0.000{col 123}{space 4} 3025.595{col 136}{space 3} 4189.365
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2226.034{col 95}{space 2} 167.9589{col 106}{space 1}   13.25{col 115}{space 3}0.000{col 123}{space 4} 1896.841{col 136}{space 3} 2555.228
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .7305124{col 95}{space 2} .0413152{col 123}{space 4} .6440207{col 136}{space 3} .8049676
+                                                                              rho {c |}{col 83}{res}{space 2} .7242368{col 95}{space 2} .0424687{col 123}{space 4} .6354625{col 136}{space 3} .8008308
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}123.59{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}117.37{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLT) append
@@ -1288,43 +1306,45 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4862.8488}  
-Iteration 1:{space 2}Log likelihood = {res:-2762.1949}  
-Iteration 2:{space 2}Log likelihood = {res:-2652.4901}  
-Iteration 3:{space 2}Log likelihood = {res:-2648.5807}  
-Iteration 4:{space 2}Log likelihood = {res:-2648.5779}  
-Iteration 5:{space 2}Log likelihood = {res:-2648.5779}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4852.3056}  
+Iteration 1:{space 2}Log likelihood = {res:-2746.6214}  
+Iteration 2:{space 2}Log likelihood = {res:-2638.7788}  
+Iteration 3:{space 2}Log likelihood = {res:-2635.3474}  
+Iteration 4:{space 2}Log likelihood = {res:-2635.3462}  
+Iteration 5:{space 2}Log likelihood = {res:-2635.3462}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4775.9907}  
-Iteration 1:{space 2}Log likelihood = {res:-2566.0898}  
-Iteration 2:{space 2}Log likelihood = {res:-2486.4369}  
-Iteration 3:{space 2}Log likelihood = {res:-2483.2935}  
-Iteration 4:{space 2}Log likelihood = {res:-2483.2848}  
-Iteration 5:{space 2}Log likelihood = {res:-2483.2848}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4765.2233}  
+Iteration 1:{space 2}Log likelihood = {res: -2553.297}  
+Iteration 2:{space 2}Log likelihood = {res:-2473.2867}  
+Iteration 3:{space 2}Log likelihood = {res:-2470.0558}  
+Iteration 4:{space 2}Log likelihood = {res:-2470.0473}  
+Iteration 5:{space 2}Log likelihood = {res:-2470.0473}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-19465.758
-{txt}Iteration 1:  Log likelihood = {res}-19457.753
-{txt}Iteration 2:  Log likelihood = {res}-19457.725
+Iteration 0:  Log likelihood = {res} -19437.74
+{txt}Iteration 1:  Log likelihood = {res}-19429.848
+{txt}Iteration 2:  Log likelihood = {res}-19429.823
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4422.6177}  
-Iteration 1:{space 2}Log likelihood = {res: -2966.526}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-2467.0794}  
-Iteration 3:{space 2}Log likelihood = {res:-2428.6416}  (backed up)
-Iteration 4:{space 2}Log likelihood = {res:-2426.2572}  
-Iteration 5:{space 2}Log likelihood = {res:-2422.3491}  
-Iteration 6:{space 2}Log likelihood = {res:-2422.3393}  
-Iteration 7:{space 2}Log likelihood = {res:-2422.3387}  
-Iteration 8:{space 2}Log likelihood = {res:-2422.3383}  
-Iteration 9:{space 2}Log likelihood = {res:-2422.3383}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4422.2156}  
+Iteration 1:{space 2}Log likelihood = {res:-2835.9785}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-2478.9333}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-2459.9196}  (not concave)
+Iteration 4:{space 2}Log likelihood = {res:-2449.4723}  (not concave)
+Iteration 5:{space 2}Log likelihood = {res:-2443.1141}  
+Iteration 6:{space 2}Log likelihood = {res:-2414.0988}  
+Iteration 7:{space 2}Log likelihood = {res:-2412.1468}  
+Iteration 8:{space 2}Log likelihood = {res:-2412.1382}  
+Iteration 9:{space 2}Log likelihood = {res:-2412.1373}  
+Iteration 10:{space 1}Log likelihood = {res:-2412.1366}  
+Iteration 11:{space 1}Log likelihood = {res:-2412.1366}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,423}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:218}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,422}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:217}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:2,205}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -1336,39 +1356,39 @@ Iteration 9:{space 2}Log likelihood = {res:-2422.3383}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:121.50}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2422.3383}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:121.75}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2412.1366}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2}-1259.502{col 95}{space 2} 402.4633{col 106}{space 1}   -3.13{col 115}{space 3}0.002{col 123}{space 4}-2048.316{col 136}{space 3}-470.6886
+{space 74}Female  {c |}{col 83}{res}{space 2}-1240.203{col 95}{space 2} 399.6379{col 106}{space 1}   -3.10{col 115}{space 3}0.002{col 123}{space 4}-2023.479{col 136}{space 3}-456.9275
 {txt}{space 81} {c |}
 {space 77}ageE {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1063.061{col 95}{space 2} 776.7657{col 106}{space 1}    1.37{col 115}{space 3}0.171{col 123}{space 4}-459.3717{col 136}{space 3} 2585.494
-{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-3051.484{col 95}{space 2} 852.7176{col 106}{space 1}   -3.58{col 115}{space 3}0.000{col 123}{space 4} -4722.78{col 136}{space 3}-1380.188
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1067.015{col 95}{space 2} 775.6441{col 106}{space 1}    1.38{col 115}{space 3}0.169{col 123}{space 4}-453.2194{col 136}{space 3}  2587.25
+{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2} -3033.35{col 95}{space 2} 850.4555{col 106}{space 1}   -3.57{col 115}{space 3}0.000{col 123}{space 4}-4700.212{col 136}{space 3}-1366.488
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2}   3033.1{col 95}{space 2} 413.8208{col 106}{space 1}    7.33{col 115}{space 3}0.000{col 123}{space 4} 2222.026{col 136}{space 3} 3844.174
+{space 73}Limited  {c |}{col 83}{res}{space 2} 3052.411{col 95}{space 2} 413.8142{col 106}{space 1}    7.38{col 115}{space 3}0.000{col 123}{space 4}  2241.35{col 136}{space 3} 3863.472
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 805.6156{col 95}{space 2} 639.0382{col 106}{space 1}    1.26{col 115}{space 3}0.207{col 123}{space 4}-446.8762{col 136}{space 3} 2058.107
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2} 232.6883{col 95}{space 2} 675.2926{col 106}{space 1}    0.34{col 115}{space 3}0.730{col 123}{space 4}-1090.861{col 136}{space 3} 1556.237
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 797.0943{col 95}{space 2} 634.2378{col 106}{space 1}    1.26{col 115}{space 3}0.209{col 123}{space 4}-445.9889{col 136}{space 3} 2040.177
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}   234.42{col 95}{space 2} 670.1718{col 106}{space 1}    0.35{col 115}{space 3}0.726{col 123}{space 4}-1079.093{col 136}{space 3} 1547.933
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.1103631{col 95}{space 2} .0273208{col 106}{space 1}   -4.04{col 115}{space 3}0.000{col 123}{space 4}-.1639108{col 136}{space 3}-.0568153
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5793.143{col 95}{space 2} 1082.132{col 106}{space 1}   -5.35{col 115}{space 3}0.000{col 123}{space 4}-7914.083{col 136}{space 3}-3672.203
+{space 75}income {c |}{col 83}{res}{space 2}-.1088881{col 95}{space 2} .0272401{col 106}{space 1}   -4.00{col 115}{space 3}0.000{col 123}{space 4}-.1622776{col 136}{space 3}-.0554985
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5802.096{col 95}{space 2} 1078.766{col 106}{space 1}   -5.38{col 115}{space 3}0.000{col 123}{space 4}-7916.438{col 136}{space 3}-3687.754
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 3621.426{col 95}{space 2} 292.6449{col 106}{space 1}   12.37{col 115}{space 3}0.000{col 123}{space 4} 3047.852{col 136}{space 3} 4194.999
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2250.038{col 95}{space 2} 167.5251{col 106}{space 1}   13.43{col 115}{space 3}0.000{col 123}{space 4} 1921.695{col 136}{space 3} 2578.381
+{space 73}/sigma_u {c |}{col 83}{res}{space 2}  3581.67{col 95}{space 2} 292.1722{col 106}{space 1}   12.26{col 115}{space 3}0.000{col 123}{space 4} 3009.023{col 136}{space 3} 4154.317
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2259.991{col 95}{space 2} 169.0658{col 106}{space 1}   13.37{col 115}{space 3}0.000{col 123}{space 4} 1928.629{col 136}{space 3} 2591.354
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .7214854{col 95}{space 2} .0414316{col 123}{space 4} .6351044{col 136}{space 3} .7964807
+                                                                              rho {c |}{col 83}{res}{space 2} .7152329{col 95}{space 2}  .042552{col 123}{space 4}  .626647{col 136}{space 3} .7923176
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}121.89{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}115.82{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(EducationLT) append
@@ -1388,43 +1408,45 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
 
 Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4862.8488}  
-Iteration 1:{space 2}Log likelihood = {res:-2762.1949}  
-Iteration 2:{space 2}Log likelihood = {res:-2652.4901}  
-Iteration 3:{space 2}Log likelihood = {res:-2648.5807}  
-Iteration 4:{space 2}Log likelihood = {res:-2648.5779}  
-Iteration 5:{space 2}Log likelihood = {res:-2648.5779}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4852.3056}  
+Iteration 1:{space 2}Log likelihood = {res:-2746.6214}  
+Iteration 2:{space 2}Log likelihood = {res:-2638.7788}  
+Iteration 3:{space 2}Log likelihood = {res:-2635.3474}  
+Iteration 4:{space 2}Log likelihood = {res:-2635.3462}  
+Iteration 5:{space 2}Log likelihood = {res:-2635.3462}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4775.9907}  
-Iteration 1:{space 2}Log likelihood = {res:-2566.0898}  
-Iteration 2:{space 2}Log likelihood = {res:-2486.4369}  
-Iteration 3:{space 2}Log likelihood = {res:-2483.2935}  
-Iteration 4:{space 2}Log likelihood = {res:-2483.2848}  
-Iteration 5:{space 2}Log likelihood = {res:-2483.2848}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4765.2233}  
+Iteration 1:{space 2}Log likelihood = {res: -2553.297}  
+Iteration 2:{space 2}Log likelihood = {res:-2473.2867}  
+Iteration 3:{space 2}Log likelihood = {res:-2470.0558}  
+Iteration 4:{space 2}Log likelihood = {res:-2470.0473}  
+Iteration 5:{space 2}Log likelihood = {res:-2470.0473}  
 {res}
 {txt}Obtaining starting values for full model:
 
-Iteration 0:  Log likelihood = {res}-19465.758
-{txt}Iteration 1:  Log likelihood = {res}-19457.753
-{txt}Iteration 2:  Log likelihood = {res}-19457.725
+Iteration 0:  Log likelihood = {res} -19437.74
+{txt}Iteration 1:  Log likelihood = {res}-19429.848
+{txt}Iteration 2:  Log likelihood = {res}-19429.823
 
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 2}Log likelihood = {res:-4422.6177}  
-Iteration 1:{space 2}Log likelihood = {res: -2966.526}  (not concave)
-Iteration 2:{space 2}Log likelihood = {res:-2467.0794}  
-Iteration 3:{space 2}Log likelihood = {res:-2428.6416}  (backed up)
-Iteration 4:{space 2}Log likelihood = {res:-2426.2572}  
-Iteration 5:{space 2}Log likelihood = {res:-2422.3491}  
-Iteration 6:{space 2}Log likelihood = {res:-2422.3393}  
-Iteration 7:{space 2}Log likelihood = {res:-2422.3387}  
-Iteration 8:{space 2}Log likelihood = {res:-2422.3383}  
-Iteration 9:{space 2}Log likelihood = {res:-2422.3383}  
+{txt}Iteration 0:{space 2}Log likelihood = {res:-4422.2156}  
+Iteration 1:{space 2}Log likelihood = {res:-2835.9785}  (not concave)
+Iteration 2:{space 2}Log likelihood = {res:-2478.9333}  (not concave)
+Iteration 3:{space 2}Log likelihood = {res:-2459.9196}  (not concave)
+Iteration 4:{space 2}Log likelihood = {res:-2449.4723}  (not concave)
+Iteration 5:{space 2}Log likelihood = {res:-2443.1141}  
+Iteration 6:{space 2}Log likelihood = {res:-2414.0988}  
+Iteration 7:{space 2}Log likelihood = {res:-2412.1468}  
+Iteration 8:{space 2}Log likelihood = {res:-2412.1382}  
+Iteration 9:{space 2}Log likelihood = {res:-2412.1373}  
+Iteration 10:{space 1}Log likelihood = {res:-2412.1366}  
+Iteration 11:{space 1}Log likelihood = {res:-2412.1366}  
 {res}
-{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,423}
-{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:218}
+{txt}{col 1}Random-effects tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:2,422}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:217}
 {txt}{col 1}Limits: Lower = {ralign 4:{res:0}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:2,205}
 {txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
 
@@ -1436,39 +1458,39 @@ Iteration 9:{space 2}Log likelihood = {res:-2422.3383}
 
 {txt}{col 1}Integration method: {res:mvaghermite}{col 53}{lalign 17:Integration pts.}{col 70} = {res}{ralign 6:12}
 
-{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:121.50}
-{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2422.3383}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 53}{lalign 17:Wald chi2({res:7})}{col 70} = {res}{ralign 6:121.75}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-2412.1366}{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
 
 {txt}{hline 82}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}                                                                            ypen3{col 83}{c |} Coefficient{col 95}  Std. err.{col 107}      z{col 115}   P>|z|{col 123}     [95% con{col 136}f. interval]
 {hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 75}gender {c |}
 {space 76}Male  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 74}Female  {c |}{col 83}{res}{space 2}-1259.502{col 95}{space 2} 402.4633{col 106}{space 1}   -3.13{col 115}{space 3}0.002{col 123}{space 4}-2048.316{col 136}{space 3}-470.6886
+{space 74}Female  {c |}{col 83}{res}{space 2}-1240.203{col 95}{space 2} 399.6379{col 106}{space 1}   -3.10{col 115}{space 3}0.002{col 123}{space 4}-2023.479{col 136}{space 3}-456.9275
 {txt}{space 81} {c |}
 {space 77}ageE {c |}
 {space 58}Less than 55 years old  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1063.061{col 95}{space 2} 776.7657{col 106}{space 1}    1.37{col 115}{space 3}0.171{col 123}{space 4}-459.3717{col 136}{space 3} 2585.494
-{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2}-3051.484{col 95}{space 2} 852.7176{col 106}{space 1}   -3.58{col 115}{space 3}0.000{col 123}{space 4} -4722.78{col 136}{space 3}-1380.188
+{space 53}Between 55 and 64 years old  {c |}{col 83}{res}{space 2} 1067.015{col 95}{space 2} 775.6441{col 106}{space 1}    1.38{col 115}{space 3}0.169{col 123}{space 4}-453.2194{col 136}{space 3}  2587.25
+{txt}{space 61}Older than 64 years  {c |}{col 83}{res}{space 2} -3033.35{col 95}{space 2} 850.4555{col 106}{space 1}   -3.57{col 115}{space 3}0.000{col 123}{space 4}-4700.212{col 136}{space 3}-1366.488
 {txt}{space 81} {c |}
 {space 77}gali {c |}
 {space 69}Not limited  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-{space 73}Limited  {c |}{col 83}{res}{space 2}   3033.1{col 95}{space 2} 413.8208{col 106}{space 1}    7.33{col 115}{space 3}0.000{col 123}{space 4} 2222.026{col 136}{space 3} 3844.174
+{space 73}Limited  {c |}{col 83}{res}{space 2} 3052.411{col 95}{space 2} 413.8142{col 106}{space 1}    7.38{col 115}{space 3}0.000{col 123}{space 4}  2241.35{col 136}{space 3} 3863.472
 {txt}{space 81} {c |}
 {space 77}educ {c |}
 {space 5}Less than primary, primary and lower secondary education (ISCED levels 0-2)  {c |}{col 83}{res}{space 2}        0{col 95}{txt}  (base)
-Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 805.6156{col 95}{space 2} 639.0382{col 106}{space 1}    1.26{col 115}{space 3}0.207{col 123}{space 4}-446.8762{col 136}{space 3} 2058.107
-{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2} 232.6883{col 95}{space 2} 675.2926{col 106}{space 1}    0.34{col 115}{space 3}0.730{col 123}{space 4}-1090.861{col 136}{space 3} 1556.237
+Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)  {c |}{col 83}{res}{space 2} 797.0943{col 95}{space 2} 634.2378{col 106}{space 1}    1.26{col 115}{space 3}0.209{col 123}{space 4}-445.9889{col 136}{space 3} 2040.177
+{txt}{space 43}Tertiary education (ISCED levels 5-8)  {c |}{col 83}{res}{space 2}   234.42{col 95}{space 2} 670.1718{col 106}{space 1}    0.35{col 115}{space 3}0.726{col 123}{space 4}-1079.093{col 136}{space 3} 1547.933
 {txt}{space 81} {c |}
-{space 75}income {c |}{col 83}{res}{space 2}-.1103631{col 95}{space 2} .0273208{col 106}{space 1}   -4.04{col 115}{space 3}0.000{col 123}{space 4}-.1639108{col 136}{space 3}-.0568153
-{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5793.143{col 95}{space 2} 1082.132{col 106}{space 1}   -5.35{col 115}{space 3}0.000{col 123}{space 4}-7914.083{col 136}{space 3}-3672.203
+{space 75}income {c |}{col 83}{res}{space 2}-.1088881{col 95}{space 2} .0272401{col 106}{space 1}   -4.00{col 115}{space 3}0.000{col 123}{space 4}-.1622776{col 136}{space 3}-.0554985
+{txt}{space 76}_cons {c |}{col 83}{res}{space 2}-5802.096{col 95}{space 2} 1078.766{col 106}{space 1}   -5.38{col 115}{space 3}0.000{col 123}{space 4}-7916.438{col 136}{space 3}-3687.754
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 73}/sigma_u {c |}{col 83}{res}{space 2} 3621.426{col 95}{space 2} 292.6449{col 106}{space 1}   12.37{col 115}{space 3}0.000{col 123}{space 4} 3047.852{col 136}{space 3} 4194.999
-{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2250.038{col 95}{space 2} 167.5251{col 106}{space 1}   13.43{col 115}{space 3}0.000{col 123}{space 4} 1921.695{col 136}{space 3} 2578.381
+{space 73}/sigma_u {c |}{col 83}{res}{space 2}  3581.67{col 95}{space 2} 292.1722{col 106}{space 1}   12.26{col 115}{space 3}0.000{col 123}{space 4} 3009.023{col 136}{space 3} 4154.317
+{txt}{space 73}/sigma_e {c |}{col 83}{res}{space 2} 2259.991{col 95}{space 2} 169.0658{col 106}{space 1}   13.37{col 115}{space 3}0.000{col 123}{space 4} 1928.629{col 136}{space 3} 2591.354
 {txt}{hline 82}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                                              rho {c |}{col 83}{res}{space 2} .7214854{col 95}{space 2} .0414316{col 123}{space 4} .6351044{col 136}{space 3} .7964807
+                                                                              rho {c |}{col 83}{res}{space 2} .7152329{col 95}{space 2}  .042552{col 123}{space 4}  .626647{col 136}{space 3} .7923176
 {txt}{hline 82}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}121.89{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}115.82{col 56}{txt}Prob >= chibar2 = {res}0.000
 
 {txt}
 {com}. outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLT) append
@@ -1885,7 +1907,7 @@ Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)
       {txt}name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Aug 2026, 10:51:40
+ {txt}closed on:  {res}25 Aug 2026, 11:20:50
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
