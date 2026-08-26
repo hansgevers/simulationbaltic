@@ -63,23 +63,13 @@ use "dataset.dta"
 
 *>>>PREPARATION
 
-label define isc 0 "None" 1 "Primary education" 2 "Lower secondary education" 3 "Upper secondary education" 4 "Post-secondary non-tertiary education" 5 "Bachelor's or equivalent level" 6 "Master's or equivalent level/Doctoral or equivalent level"
-label values isced isc
-label variable isced "Education"
-
 generate income = thinc-ypen3
 
 egen id= group(mergeid)
 
-drop if cjs==-99
+keep ypen3 gender age country income gali id Qyear
 
-generate educ=0
-replace educ=1 if isced==3 | isced==4
-replace educ=2 if isced>=5
-label define educL 0 "Less than primary, primary and lower secondary education (ISCED levels 0-2)" 1 "Upper secondary and post-secondary non-tertiary education (ISCED levels 3 and 4)" 2 "Tertiary education (ISCED levels 5-8)"
-label values educ educL
-
-keep single ypen3 gender cjs age educ sphus country income gali id Qyear sphus
+replace income=0 if income<0
 
 drop if ypen3>7000
 
@@ -102,7 +92,7 @@ label values ageE agel
 
 tabulate country
 
-asdoc codebook single ypen3 gender cjs age educ sphus country income gali id Qyear, compact save(report.doc) append
+asdoc codebook ypen3 gender age country income gali id Qyear, compact save(report.doc) append
 
 asdoc codebook, save(report.doc) append
 
@@ -113,81 +103,38 @@ graph export sample.png, replace height(2400)
 vioplot age if ypen3>0, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
 graph export sampleDis.png, replace height(2400)
 
-asdoc spearman single ypen3 gender cjs age educ sphus country income gali id Qyear sphus, save(report.doc) append
+asdoc spearman ypen3 gender age country income gali id Qyear, save(report.doc) append
 
-asdoc tabstat income if country==35 & gender==1, by(ageD) stat(mean), save(report.doc) append
-asdoc tabstat income if country==48 & gender==1, by(ageD) stat(mean), save(report.doc) append
-asdoc tabstat income if country==57 & gender==1, by(ageD) stat(mean), save(report.doc) append
-asdoc tabstat income if country==35 & gender==2, by(ageD) stat(mean), save(report.doc) append
-asdoc tabstat income if country==48 & gender==2, by(ageD) stat(mean), save(report.doc) append
-asdoc tabstat income if country==57 & gender==2, by(ageD) stat(mean), save(report.doc) append
+foreach ageC in ageD ageE{	
+	foreach num of numlist 35 48 57{
+			foreach num2 of numlist 1 2{
+				foreach num3 of numlist 0 1{
+					asdoc, text(\par for `ageC': Country `num' , gender `num2' , limited `num3')
+					asdoc tabstat income if country==`num' & gender==`num2' & gali==`num3', by(`ageC') stat(mean), save(report.doc) append
+				}
+			}		
+	}
+}
 
 *>>>ANALYSIS
 
 xtset id Qyear
 
-*-------
-*ESTONIA
-
-*general model
-
-xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==35, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreEE) replace
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreEE) noaster replace
-
 *for disability
+xttobit ypen3 i.gender i.ageD i.gali income i.country, ll(0) iterate(25) tobit
+outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityTobit) replace
 
-xttobit ypen3 i.gender i.ageD i.gali income if country==35, ll(0) iterate(25) baselevels
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityEE) noaster append
+xtpoisson ypen3 i.gender i.ageD i.gali income i.country if ypen3>0, re vce(robust)
+outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityPoisson) append
+outreg2 using resultsNoStar.xls, excel dec(10) ctitle(DisabilityPoisson) noaster nose replace
 
 *for income
+xttobit ypen3 i.gender i.ageE i.gali income i.country, ll(0) iterate(25) tobit
+outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeTobit) append
 
-xttobit ypen3 i.gender i.ageE i.gali income if country==35, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeEE) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeEE) noaster append
-
-*-------
-*LITHUANIA
-
-*general model
-
-xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==48, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(CoreLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(CoreLT) noaster append
-
-*for disability
-
-xttobit ypen3 i.gender i.ageD i.gali income if country==48, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLT) noaster append
-
-*for income
-
-xttobit ypen3 i.gender i.ageE i.gali income if country==48, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLT) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLT) noaster append
-
-*-------
-*LATVIA
-
-*general model
-
-xttobit ypen3 i.gender age i.gali i.educ income i.single i.cjs if country==57, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(Core) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(Core) noaster append
-
-*for disability
-
-xttobit ypen3 i.gender i.ageD i.gali income if country==57, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(DisabilityLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(DisabilityLV) noaster append
-
-*for income
-
-xttobit ypen3 i.gender i.ageE i.gali income if country==57, ll(0) iterate(25) baselevels tobit
-outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomeLV) append
-outreg2 using resultsNoStar.xls, excel dec(3) ctitle(IncomeLV) noaster append
+xtpoisson ypen3 i.gender i.ageE i.gali income i.country if ypen3>0, re vce(robust)
+outreg2 using results.xls, excel dec(3) alpha(0.01, 0.05, 0.10) symbol(***, **, *) ctitle(IncomePoisson) append
+outreg2 using resultsNoStar.xls, excel dec(10) ctitle(IncomePoisson) noaster nose append
 
 log close SimulationBaltic
 translate output.smcl output.pdf
