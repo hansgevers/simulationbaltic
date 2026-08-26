@@ -3,7 +3,7 @@
       name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}26 Aug 2026, 15:05:52
+ {txt}opened on:  {res}26 Aug 2026, 19:31:59
 {txt}
 {com}. 
 . asdoc, text(\par \qc Financial Sustainability of the Care for the Disabled: A Simulation of Benefits for Older People in the Baltic States up to 2036 with data from SHARE and Eurostat) fs(12)  save(report.doc) replace
@@ -476,11 +476,6 @@ saved
 {res}{txt}
 {com}. graph export benefits.svg, replace height(2400)
 {txt}{p 0 4 2}
-(file {bf}
-benefits.svg{rm}
-not found)
-{p_end}
-{p 0 4 2}
 file {bf}
 benefits.svg{rm}
 saved as
@@ -488,15 +483,10 @@ SVG
 format
 {p_end}
 
-{com}. vioplot age, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
+{com}. vioplot age if Qyear==2020, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
 {txt}
 {com}. graph export sample.svg, replace height(2400)
 {txt}{p 0 4 2}
-(file {bf}
-sample.svg{rm}
-not found)
-{p_end}
-{p 0 4 2}
 file {bf}
 sample.svg{rm}
 saved as
@@ -504,15 +494,10 @@ SVG
 format
 {p_end}
 
-{com}. vioplot age if ypen3>0, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
+{com}. vioplot age if Qyear==2020 & ypen3>0, over(gender) over(country) scheme(s2color) ytitle("Number of respondents", margin(small)) ylabel(30(10)100,angle(0) labsize(small) grid) 
 {txt}
 {com}. graph export sampleDis.svg, replace height(2400)
 {txt}{p 0 4 2}
-(file {bf}
-sampleDis.svg{rm}
-not found)
-{p_end}
-{p 0 4 2}
 file {bf}
 sampleDis.svg{rm}
 saved as
@@ -1143,7 +1128,7 @@ Between 55 and 64 years old  {c |}{col 30}{res}{space 2} .3505488{col 42}{space 
       {txt}name:  {res}SimulationBaltic
        {txt}log:  {res}C:\Users\hansg\Documents\bestanden\PhD ebs\JRF work Stata\SHARE data 7\output.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}26 Aug 2026, 15:06:52
+ {txt}closed on:  {res}26 Aug 2026, 19:33:14
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
