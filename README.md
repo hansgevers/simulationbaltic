@@ -10,6 +10,6 @@ To support reproducibility of the study, following do-files are available:
 - "Forecast.xlsx" as the Excel file for plotting the outcome graphs
 - the published illustrations
 
-Relevant hyperlinks: www.share-eric.eu www.stata.com ec.europa.eu/eurostat/web/main/home
+Relevant hyperlinks: www.share-eric.eu www.stata.com https://ec.europa.eu/eurostat/web/main/home
 
 Author: Hans Gevers - https://orcid.org/0009-0001-0249-4142
