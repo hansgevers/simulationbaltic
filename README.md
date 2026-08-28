@@ -6,7 +6,7 @@ To support reproducibility of the study, following do-files are available:
 - "do.do" as the Stata file for data preprocessing & preparation, descriptives, and analysis
 - "do.graphs" to plot the outcome graphs
 - "output.pdf/.smcl" as the log of the do.do execution
-- "Eurostat data.xlsx" as the Excel file with the used Eurostat data (the SHARE-package requires registration) and calculations
+- "Eurostat data.xlsx" as the Excel file with the used Eurostat data (the SHARE data requires registration) and calculations
 - "Forecast.xlsx" as the Excel file for plotting the outcome graphs
 - the published illustrations
 
